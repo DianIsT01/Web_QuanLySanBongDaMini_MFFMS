@@ -12,8 +12,8 @@
 * Repository có 2 phần bao gồm Front-end (React JS) và Back-end (C#)
 
 ## Demo UI
-![Uploading image.png…]()
 
+![mffms-login](https://user-images.githubusercontent.com/75024999/140756732-1e018c94-3213-417c-9634-98f7c5b5b25f.png)
 
 ## Các phân hệ chính
 * Quản lý khách hàng
