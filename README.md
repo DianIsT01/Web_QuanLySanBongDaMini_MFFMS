@@ -9,9 +9,10 @@
 
 ## Giới thiệu
 * **MFFMS** (Mini Football Field Management System) là hệ thống quản lý sân bóng đá mini trên nền tảng web application. MFFMS hỗ trợ tin học hóa các chức năng nghiệp vụ cơ bản mà một sân bóng đá mini cần phải có.
-* Repository có 2 phần bao gồm front-end (React JS) và Backend (C#)
+* Repository có 2 phần bao gồm Front-end (React JS) và Back-end (C#)
 
-## Demo
+## Demo UI
+![Uploading image.png…]()
 
 
 ## Các phân hệ chính
