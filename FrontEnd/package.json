@@ -1,0 +1,43 @@
+{
+  "name": "web-mffms",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.18.0",
+    "chart.js": "^2.9.3",
+    "clone-deep": "^4.0.1",
+    "debounce": "^1.2.0",
+    "exceljs": "^1.13.0",
+    "export-from-json": "^1.1.4",
+    "file-saver": "^2.0.2",
+    "moment": "^2.24.0",
+    "rc-slider": "^8.7.1",
+    "react": "16.5.0",
+    "react-chartjs-2": "^2.8.0",
+    "react-countup": "^4.2.6",
+    "react-date-range": "^1.0.0-beta",
+    "react-dom": "16.5.0",
+    "react-notifications": "^1.4.3",
+    "react-redux": "^6.0.0",
+    "react-router-dom": "^4.3.1",
+    "react-select": "^3.0.8",
+    "react-time-picker": "^3.8.0",
+    "redux": "^4.0.1",
+    "validator": "^12.1.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "react-scripts": "latest"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
