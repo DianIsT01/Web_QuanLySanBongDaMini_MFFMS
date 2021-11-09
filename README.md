@@ -39,14 +39,12 @@
 * Nhập xuất dữ liệu từ file `*.json`
 * Cho phép kết nối với hệ thống tiếp nhận lịch đặt sân từ phía khách hàng
 
-## Ngôn ngữ lập trình và công nghệ
-* Ngôn ngữ: HTML, CSS, JavaScript, C#
-* Framework: ReactJS, ASP.NET Core
-* Hệ quản trị CSDL: MySQL
+## Thông tin cấu hình
+|           | Ngôn ngữ lập trình    | Framework    | Môi trường phát triển                       |
+|-----------|-----------------------|--------------|---------------------------------------------|
+| Front End | HTML, CSS, JavaScript | ReactJS      | NodeJS 15.9.0<br>Microsoft Visual Code 1.62 |
+| Back End  | C#                    | ASP.NET Core | ASP.NET Core 2.2<br>C# 6.0<br>MySQL         |
 
-## Môi trường phát triển
-* NodeJS 15.9.0
-* Microsoft Visual Code 1.62
 
 ## Cài đặt
 * Tải và cài đặt [NodeJS](https://nodejs.org/en/).
