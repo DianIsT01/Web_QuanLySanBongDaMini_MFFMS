@@ -1,4 +1,5 @@
 
+
 <h1 align="center">
   Website Hệ thống quản lý sân bóng đá mini - Fullstack
 </h1>
@@ -39,14 +40,13 @@
 * Nhập xuất dữ liệu từ file `*.json`
 * Cho phép kết nối với hệ thống tiếp nhận lịch đặt sân từ phía khách hàng
 
-## Thông tin cấu hình
-|           | Ngôn ngữ lập trình    | Framework    | Môi trường phát triển                       |
-|-----------|-----------------------|--------------|---------------------------------------------|
-| Front End | HTML, CSS, JavaScript | ReactJS      | NodeJS 15.9.0<br>Microsoft Visual Code 1.62 |
-| Back End  | C#                    | ASP.NET Core | ASP.NET Core 2.2<br>C# 6.0<br>MySQL         |
-
+|           | Ngôn ngữ lập trình    | Framework    | Môi trường phát triển                       |   |
+|-----------|-----------------------|--------------|---------------------------------------------|---|
+| Front End | HTML, CSS, JavaScript | ReactJS      | NodeJS 15.9.0<br>Microsoft Visual Code 1.62 |   |
+| Back End  | C#                    | ASP.NET Core | ASP.NET Core 2.2<br>C# 6.0                  |   |
 
 ## Cài đặt
+#### Về phía Front End
 * Tải và cài đặt [NodeJS](https://nodejs.org/en/).
 * Trong command line, thực thi dòng lệnh sau:
 ```bash
@@ -66,7 +66,30 @@
 ```
 * Sau khi quá trình biên dịch hoàn tất, truy cập vào địa chỉ `http://localhost:3000`.
 
+#### Về phía Back End
+* Cài đặt [ASP.NET Core](https://dotnet.microsoft.com/download/dotnet-core/2.2), phiên bản 2.2.
+* Cài đặt hệ quản trị CSDL MySQL trên máy tính với [XAMPP](https://www.apachefriends.org/download.html) 
+> Các bước setup:
+* 1. Kích hoạt chạy XAMPP
+* 2. Mở project bằng Visual Studio Code, sau đó chọn New Terminal và thực thi các dòng lệnh sau. Chú ý đặt thư mục Backend là thư mục làm việc
+```bash
+> dotnet ef migrations add InitialCreate
+> dotnet ef database update
+```
+* 3. Sau đó thực hiện gõ lệnh bên dưới và nhấn Enter
+```bash
+> dotnet build
+```
+* 4. Cuối cùng ta thực hiện lệnh
+```bash
+> dotnet run
+```
+* Sau khi quá trình hoàn tất, truy cập vào địa chỉ `http://localhost:5000`để  vào trang Swagger
+
+
+
 ## Thư viện
+####  Front End
 * [React](https://www.npmjs.com/package/react)
 * [React DOM](https://www.npmjs.com/package/react-dom)
 * [React Router DOM](https://www.npmjs.com/package/react-router-dom)
@@ -86,6 +109,11 @@
 * [Export from JSON](https://www.npmjs.com/package/export-from-json)
 * [File Saver](https://www.npmjs.com/package/file-saver)
 * [Moment](https://www.npmjs.com/package/moment)
+
+####  Back End
+* [AutoMapper](https://www.nuget.org/packages/AutoMapper.Extensions.Microsoft.DependencyInjection/)
+* [MySql.Data.EntityFrameworkCore](https://www.nuget.org/packages/MySql.Data.EntityFrameworkCore)
+* [Swashbuckle.AspNetCore](https://www.nuget.org/packages/swashbuckle.aspnetcore/)
 
 ## Giấy phép
 * [MIT](https://github.com/vangiaurecca/Web_QuanLySanBongDaMini_MFFMS/blob/master/LICENSE)
