@@ -14,7 +14,30 @@
 
 ## Demo UI
 
-![mffms-login](https://user-images.githubusercontent.com/75024999/140756732-1e018c94-3213-417c-9634-98f7c5b5b25f.png)
+* Trang Login
+![mffms-login](https://user-images.githubusercontent.com/75024999/140756732-1e018c94-3213-417c-9634-98f7c5b5b25f.png) 
+
+* Giao diện chính dành cho ADMIN
+![image](https://user-images.githubusercontent.com/75024999/140855058-f8610bfa-406f-4592-8e10-513f714edc17.png) 
+
+* Trang quản lý khách hàng
+![image](https://user-images.githubusercontent.com/75024999/140855216-4970b82d-a85c-42b1-b54d-4db755f58891.png) 
+
+* Xem chi tiết sân bóng
+![image](https://user-images.githubusercontent.com/75024999/140855446-c554aa7f-7481-463c-8c99-71e37cccacec.png)
+
+* Trang thống kê các thông tin về nhân viên
+![image](https://user-images.githubusercontent.com/75024999/140855314-ef252c6b-af8f-4308-907d-625379dbc278.png) 
+
+* Chức năng xuất báo cáo ra file EXCEL và PDF
+![image](https://user-images.githubusercontent.com/75024999/140855579-d8bc0a08-7dba-4686-99e1-ed41e75f4cd5.png)
+![image](https://user-images.githubusercontent.com/75024999/140855782-15c8e135-b50d-4f8f-ad36-055df5960e05.png)
+![image](https://user-images.githubusercontent.com/75024999/140855883-45e6fbc3-eaca-4ab0-89bb-f41a22d59411.png)
+
+
+
+
+
 
 ## Các phân hệ chính
 * Quản lý khách hàng
@@ -40,6 +63,7 @@
 * Nhập xuất dữ liệu từ file `*.json`
 * Cho phép kết nối với hệ thống tiếp nhận lịch đặt sân từ phía khách hàng
 
+## Thông tin cấu hình
 |           | Ngôn ngữ lập trình    | Framework    | Môi trường phát triển                       |   |
 |-----------|-----------------------|--------------|---------------------------------------------|---|
 | Front End | HTML, CSS, JavaScript | ReactJS      | NodeJS 15.9.0<br>Microsoft Visual Code 1.62 |   |
