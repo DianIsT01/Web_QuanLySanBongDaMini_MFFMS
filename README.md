@@ -69,7 +69,7 @@
 | Front End | HTML, CSS, JavaScript | ReactJS      | NodeJS 15.9.0<br>Microsoft Visual Code 1.62 |   |
 | Back End  | C#                    | ASP.NET Core | ASP.NET Core 2.2<br>C# 6.0                  |   |
 
-## Cài đặt
+## Hướng dẫn các bước cài đặt và khởi chạy dự án
 #### Về phía Front End
 * Tải và cài đặt [NodeJS](https://nodejs.org/en/).
 * Trong command line, thực thi dòng lệnh sau:
