@@ -76,7 +76,7 @@
 ```bash
 > npm install -g yarn
 ```
-* Clone repository mffms-web về máy thông qua dòng lệnh sau:
+* Clone repository Web_QuanLySanBongDaMini_MFFMS về máy thông qua dòng lệnh sau:
 ```bash
 > git clone https://github.com/vangiaurecca/Web_QuanLySanBongDaMini_MFFMS.git
 ```
