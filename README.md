@@ -82,7 +82,7 @@
 ```
 * Chạy command line trong thư mục vừa được clone về, thực thi dòng lệnh sau:
 ```bash
-> npm install --legacy-peer-deps
+> yarn install
 ```
 * Sau khi quá trình cài đặt hoàn tất, tiếp tục thực thi dòng lệnh sau:
 ```bash
