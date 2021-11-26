@@ -121,7 +121,7 @@ class NguoiDungForUpdate extends Component {
                label: 'Địa chỉ',
                propForValue: 'diaChi',
                placeholder: 'Nhập địa chỉ của tài khoản',
-               type: 'textarea',
+               type: 'input',
                validators: [
                   {
                      rule: 'notEmpty',
@@ -138,12 +138,6 @@ class NguoiDungForUpdate extends Component {
                propForItemValue: 'value',
                propForItemText: 'label'
             }
-            // {
-            //    label: 'Ghi chú',
-            //    propForValue: 'ghiChu',
-            //    placeholder: 'Nhập ghi chú về tài khoản (nếu có)',
-            //    type: 'textarea'
-            // }
          ]
       }
 

@@ -247,7 +247,7 @@ class Login extends Component {
             {renderFormHeader()}
             {renderErrors()}
             {renderFormBody()}
-            {renderFormFooter()}
+            {renderFormFooter()}  
          </form>
       )
    }

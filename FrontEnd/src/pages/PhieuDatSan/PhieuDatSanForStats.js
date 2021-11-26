@@ -7,6 +7,7 @@ class PhieuDatSanForStats extends Component {
    ///// METHODS FOR RENDERING UI /////
 
    renderComponent = () => {
+      
       const settings = {
          entity: phieuDatSan,
          api: apiRoutes.phieuDatSan,

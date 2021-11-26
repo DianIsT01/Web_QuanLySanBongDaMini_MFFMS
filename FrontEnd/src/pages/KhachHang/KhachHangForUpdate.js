@@ -91,7 +91,7 @@ class KhachHangForUpdate extends Component {
                label: 'Địa chỉ',
                propForValue: 'diaChi',
                placeholder: 'Nhập địa chỉ của khách hàng',
-               type: 'textarea',
+               type: 'input',
                validators: [
                   {
                      rule: 'notEmpty',
@@ -104,7 +104,7 @@ class KhachHangForUpdate extends Component {
                label: 'Ghi chú',
                propForValue: 'ghiChu',
                placeholder: 'Nhập ghi chú về khách hàng (nếu có)',
-               type: 'textarea'
+               type: 'input'
             }
          ]
       }

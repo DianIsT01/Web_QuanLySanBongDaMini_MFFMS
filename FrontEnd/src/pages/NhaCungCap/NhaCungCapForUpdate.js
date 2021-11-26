@@ -56,7 +56,7 @@ class NhaCungCapForUpdate extends Component {
                label: 'Địa chỉ',
                propForValue: 'diaChi',
                placeholder: 'Nhập địa chỉ của nhà cung cấp',
-               type: 'textarea',
+               type: 'input',
                validators: [
                   {
                      rule: 'notEmpty',
@@ -69,7 +69,7 @@ class NhaCungCapForUpdate extends Component {
                label: 'Ghi chú',
                propForValue: 'ghiChu',
                placeholder: 'Nhập ghi chú về nhà cung cấp (nếu có)',
-               type: 'textarea'
+               type: 'input'
             }
          ]
       }

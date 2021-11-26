@@ -462,7 +462,7 @@ class ForStatsPage extends Component {
       data['datasets'] = [
          {
             label: getLabelForPropName(propName),
-            backgroundColor: 'rgba(255,99,132,0.4)',
+            backgroundColor: 'rgba(24, 116, 205,0.4)',
             borderColor: 'rgba(255,99,132,1)',
             data: Array.isArray(rawData) && rawData.map(record => record.giaTri)
          }

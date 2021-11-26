@@ -6,7 +6,7 @@ const APP_DESCRIPTION =
    'Mini Football Field Management System - Hệ thống quản lý sân bóng đá mini'
 
 const APP_ABOUT =
-   'Đồ án môn học Công nghệ WEB - HCMUE (Copyright by Nguyễn Văn Giàu - 4501104061)'
+   'Copyright by Nguyễn Văn Giàu'
 
 const PAGE_SIZES = [10, 25, 50, 100, 250, 500, 1000, 2500, 5000]
 

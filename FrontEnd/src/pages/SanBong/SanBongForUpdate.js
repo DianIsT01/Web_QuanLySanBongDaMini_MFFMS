@@ -60,7 +60,7 @@ class SanBongForUpdate extends Component {
                label: 'Ghi chú',
                propForValue: 'ghiChu',
                placeholder: 'Nhập ghi chú về sân bóng (nếu có)',
-               type: 'textarea'
+               type: 'input'
             }
          ]
       }

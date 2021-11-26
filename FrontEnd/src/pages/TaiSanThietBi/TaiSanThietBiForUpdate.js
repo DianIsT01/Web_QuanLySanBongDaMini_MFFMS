@@ -107,10 +107,18 @@ class TaiSanThietBiForUpdate extends Component {
                propForItemText: 'label'
             },
             {
+               label: 'Tình trạng',
+               propForValue: 'tinhTrang',
+               type: 'select',
+               values: ASSET_STATUSES,
+               propForItemValue: 'value',
+               propForItemText: 'label'
+            },
+            {
                label: 'Thông tin bảo hành',
                propForValue: 'thongTinBaoHanh',
                placeholder: 'Nhập thông tin bảo hành về tài sản thiết bị',
-               type: 'textarea',
+               type: 'input',
                validators: [
                   {
                      rule: 'notEmpty',
@@ -118,14 +126,6 @@ class TaiSanThietBiForUpdate extends Component {
                         'Địa chỉ của khách hàng là thông tin bắt buộc và không được để trống!'
                   }
                ]
-            },
-            {
-               label: 'Tình trạng',
-               propForValue: 'tinhTrang',
-               type: 'select',
-               values: ASSET_STATUSES,
-               propForItemValue: 'value',
-               propForItemText: 'label'
             }
          ]
       }

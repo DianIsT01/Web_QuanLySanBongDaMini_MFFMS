@@ -1,4 +1,4 @@
-const baseApi = 'http://localhost:5000/api'
+const baseApi = process.env.REACT_APP_API_ENDPOINT + '/api'
 const baseKhachHangApi = baseApi + '/KhachHang'
 const baseNhanVienApi = baseApi + '/NhanVien'
 const baseNhaCungCapApi = baseApi + '/NhaCungCap'

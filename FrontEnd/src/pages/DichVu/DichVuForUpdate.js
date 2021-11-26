@@ -59,7 +59,7 @@ class DichVuForUpdate extends Component {
                label: 'Ghi chú',
                propForValue: 'ghiChu',
                placeholder: 'Nhập ghi chú về dịch vụ (nếu có)',
-               type: 'textarea'
+               type: 'input'
             }
          ]
       }

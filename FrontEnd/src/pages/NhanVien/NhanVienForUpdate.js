@@ -121,7 +121,7 @@ class NhanVienForUpdate extends Component {
                label: 'Địa chỉ',
                propForValue: 'diaChi',
                placeholder: 'Nhập địa chỉ của nhân viên',
-               type: 'textarea',
+               type: 'input',
                validators: [
                   {
                      rule: 'notEmpty',
@@ -152,7 +152,7 @@ class NhanVienForUpdate extends Component {
                label: 'Ghi chú',
                propForValue: 'ghiChu',
                placeholder: 'Nhập ghi chú về nhân viên (nếu có)',
-               type: 'textarea'
+               type: 'input'
             }
          ]
       }
