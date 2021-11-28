@@ -44,7 +44,7 @@ class NhaCungCapForList extends Component {
             },
             {
                text: 'Địa chỉ',
-               propForValue: 'soDienThoai',
+               propForValue: 'diaChi',
                propForSorting: 'DiaChi',
                search: {
                   type: 'input',
