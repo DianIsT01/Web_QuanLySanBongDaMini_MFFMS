@@ -88,7 +88,7 @@ class ForAccountListPage extends Component {
 
    ///// METHODS FOR REACT LIFECYCLES /////
 
-   componentWillMount() {
+   UNSAFE_componentWillMount() {
       const { initializeSearchData } = this
       const searchData = initializeSearchData()
 
@@ -672,27 +672,6 @@ class ForAccountListPage extends Component {
       return searchData
    }
 
-   // getCellValue = (column, value) => {
-   //    const { type, propForValue } = column
-
-   //    if (value !== '' && value !== undefined) {
-   //       switch (type) {
-   //          case 'string': {
-   //             return value[propForValue]
-   //          }
-
-   //          case 'date': {
-   //             return formatDateString(value[propForValue])
-   //          }
-
-   //          default: {
-   //             return value[propForValue]
-   //          }
-   //       }
-   //    } else {
-   //       return '(Chưa có dữ liệu)'
-   //    }
-   // }
 
    getPageNumbers = () => {
       const { totalPages } = this.state
@@ -829,9 +808,9 @@ class ForAccountListPage extends Component {
                <span className="button" onClick={exportData}>
                   <i className="fas fa-file-export"></i>&nbsp;&nbsp;Xuất dữ liệu
                </span>
-            )} */}
+            )}
 
-            {/* <span className="button" onClick={importData}>
+            <span className="button" onClick={importData}>
                <i className="fas fa-file-import"></i>&nbsp;&nbsp;Nhập dữ liệu
             </span> */}
 
@@ -862,54 +841,6 @@ class ForAccountListPage extends Component {
          </Section>
       )
    }
-
-   // renderToolbar = () => {
-   //    const { changeKeyword, changeStatus } = this
-   //    const { keyword, status, statusStats } = this.state
-
-   //    return (
-   //       <div className="section-body-toolbar">
-   //          <div className="search-box__wrapper">
-   //             <span className="search-button">
-   //                <i className="fas fa-search"></i>
-   //             </span>
-
-   //             <input
-   //                type="text"
-   //                className="search-box"
-   //                placeholder="Nhập từ khóa cần tìm kiếm"
-   //                value={keyword}
-   //                onChange={changeKeyword}
-   //             />
-   //          </div>
-
-   //          <div className="table-tabs">
-   //             <span
-   //                className={status === 0 ? 'table-tab-active' : 'table-tab'}
-   //                onClick={() => changeStatus(0)}
-   //             >
-   //                Tất cả ({statusStats.all})
-   //             </span>
-
-   //             <span
-   //                className={
-   //                   this.state.status === 1 ? 'table-tab-active' : 'table-tab'
-   //                }
-   //                onClick={() => changeStatus(1)}
-   //             >
-   //                Đang hiển thị ({statusStats.active})
-   //             </span>
-
-   //             <span
-   //                className={status === -1 ? 'table-tab-active' : 'table-tab'}
-   //                onClick={() => changeStatus(-1)}
-   //             >
-   //                Đã xóa ({statusStats.inactive})
-   //             </span>
-   //          </div>
-   //       </div>
-   //    )
-   // }
 
    renderTable = () => {
       const { renderTableHeader, renderTableToolbar, renderTableBody } = this
@@ -1141,20 +1072,6 @@ class ForAccountListPage extends Component {
                   >
                      <Link to="#">Xóa khỏi danh sách</Link>
                   </li>
-
-                  {/* <li className="table-dropdown-menu-item">
-                     <Link to="#">Xóa tạm thời</Link>
-                  </li>
-
-                  {record.trangThai === -1 && (
-                     <li className="table-dropdown-menu-item">
-                        <Link to="#">Khôi phục lại</Link>
-                     </li>
-                  )}
-
-                  <li className="table-dropdown-menu-item">
-                     <Link to="#">Xóa vĩnh viễn</Link>
-                  </li> */}
                </ul>
             </td>
 
@@ -1204,13 +1121,13 @@ class ForAccountListPage extends Component {
       return (
          <div className="table-pagination">
             <div className="table-pagination__left">
-               {totalItems > 0 ? (
+               {/* {totalItems > 0 ? (
                   <p>
                      Danh sách có tất cả <strong>{totalItems}</strong> kết quả
                   </p>
                ) : (
                   <p>Không có kết quả nào trong danh sách</p>
-               )}
+               )} */}
             </div>
 
             <div className="table-pagination__right">

@@ -42,19 +42,12 @@ class ForUpdateProfilePage extends Component {
 
    ///// METHODS FOR REACT LIFECYCLES /////
 
-   componentWillMount() {
+   UNSAFE_componentWillMount() {
       const { initializeEditingData } = this
       const editingData = initializeEditingData()
 
       this.setState({ editingData })
    }
-
-   // componentWillReceiveProps(nextProps) {
-   //    const { initializeEditingData } = this
-   //    const editingData = initializeEditingData(nextProps)
-
-   //    this.setState({ editingData })
-   // }
 
    componentDidMount() {
       const { fetchData } = this
@@ -115,8 +108,6 @@ class ForUpdateProfilePage extends Component {
          .catch(error => {
             showErrorNotification()
             this.setState({ loading: false })
-            // const { errors } = error.response.data.result
-            // this.setState({ showAlert: true })
          })
    }
 

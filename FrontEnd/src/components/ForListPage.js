@@ -86,7 +86,7 @@ class ForListPage extends Component {
 
    ///// METHODS FOR REACT LIFECYCLES /////
 
-   componentWillMount() {
+   UNSAFE_componentWillMount() {
       const { initializeSearchData } = this
       const searchData = initializeSearchData()
 
@@ -654,28 +654,6 @@ class ForListPage extends Component {
       return searchData
    }
 
-   // getCellValue = (column, value) => {
-   //    const { type, propForValue } = column
-
-   //    if (value !== '' && value !== undefined) {
-   //       switch (type) {
-   //          case 'string': {
-   //             return value[propForValue]
-   //          }
-
-   //          case 'date': {
-   //             return formatDateString(value[propForValue])
-   //          }
-
-   //          default: {
-   //             return value[propForValue]
-   //          }
-   //       }
-   //    } else {
-   //       return '(Chưa có dữ liệu)'
-   //    }
-   // }
-
    getPageNumbers = () => {
       const { totalPages } = this.state
       let pageNumbers = []
@@ -807,16 +785,6 @@ class ForListPage extends Component {
                </Link>
             </span>
 
-            {/* {data.length !== 0 && (
-               <span className="button" onClick={exportData}>
-                  <i className="fas fa-file-export"></i>&nbsp;&nbsp;Xuất dữ liệu
-               </span>
-            )} */}
-
-            {/* <span className="button" onClick={importData}>
-               <i className="fas fa-file-import"></i>&nbsp;&nbsp;Nhập dữ liệu
-            </span> */}
-
             {exportable && data.length !== 0 && (
                <span className="button" onClick={toggleExportReportDialog}>
                   <i className="fas fa-file-export"></i>&nbsp;&nbsp;Xuất báo cáo
@@ -844,54 +812,6 @@ class ForListPage extends Component {
          </Section>
       )
    }
-
-   // renderToolbar = () => {
-   //    const { changeKeyword, changeStatus } = this
-   //    const { keyword, status, statusStats } = this.state
-
-   //    return (
-   //       <div className="section-body-toolbar">
-   //          <div className="search-box__wrapper">
-   //             <span className="search-button">
-   //                <i className="fas fa-search"></i>
-   //             </span>
-
-   //             <input
-   //                type="text"
-   //                className="search-box"
-   //                placeholder="Nhập từ khóa cần tìm kiếm"
-   //                value={keyword}
-   //                onChange={changeKeyword}
-   //             />
-   //          </div>
-
-   //          <div className="table-tabs">
-   //             <span
-   //                className={status === 0 ? 'table-tab-active' : 'table-tab'}
-   //                onClick={() => changeStatus(0)}
-   //             >
-   //                Tất cả ({statusStats.all})
-   //             </span>
-
-   //             <span
-   //                className={
-   //                   this.state.status === 1 ? 'table-tab-active' : 'table-tab'
-   //                }
-   //                onClick={() => changeStatus(1)}
-   //             >
-   //                Đang hiển thị ({statusStats.active})
-   //             </span>
-
-   //             <span
-   //                className={status === -1 ? 'table-tab-active' : 'table-tab'}
-   //                onClick={() => changeStatus(-1)}
-   //             >
-   //                Đã xóa ({statusStats.inactive})
-   //             </span>
-   //          </div>
-   //       </div>
-   //    )
-   // }
 
    renderTable = () => {
       const { renderTableHeader, renderTableToolbar, renderTableBody } = this
@@ -925,13 +845,6 @@ class ForListPage extends Component {
                      {column.text}
                   </th>
                ))}
-
-               {/* <th onClick={() => sortByColumn('TrangThai')}>
-                  {isBeingSorted('TrangThai') && (
-                     <i className="fas fa-sort sort-button"></i>
-                  )}{' '}
-                  Trạng thái
-               </th> */}
             </tr>
          </thead>
       )
@@ -1108,19 +1021,6 @@ class ForListPage extends Component {
                      <Link to="#">Xóa khỏi danh sách</Link>
                   </li>
 
-                  {/* <li className="table-dropdown-menu-item">
-                     <Link to="#">Xóa tạm thời</Link>
-                  </li>
-
-                  {record.trangThai === -1 && (
-                     <li className="table-dropdown-menu-item">
-                        <Link to="#">Khôi phục lại</Link>
-                     </li>
-                  )}
-
-                  <li className="table-dropdown-menu-item">
-                     <Link to="#">Xóa vĩnh viễn</Link>
-                  </li> */}
                </ul>
             </td>
 
@@ -1132,15 +1032,6 @@ class ForListPage extends Component {
                   {getCellValue(column, record)}
                </td>
             ))}
-
-            {/* <td>
-               <span
-                  className="active-badge"
-                  style={getCurrentStatusColors(record.trangThai)}
-               >
-                  {getCurrentStatusText(record.trangThai)}
-               </span>
-            </td> */}
          </tr>
       ))
    }

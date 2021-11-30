@@ -69,16 +69,6 @@ class TaiKhoanForList extends Component {
                   propForItemText: 'label',
                   placeholder: 'Phân quyền'
                }
-            },
-            {
-               text: 'Số điện thoại',
-               propForValue: 'soDienThoai',
-               propForSorting: 'SoDienThoai',
-               type: 'string',
-               search: {
-                  type: 'input',
-                  placeholder: 'Số điện thoại'
-               }
             }
          ]
       }

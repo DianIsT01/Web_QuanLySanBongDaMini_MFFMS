@@ -10,8 +10,7 @@ import {
    scrollTop,
    isBefore,
    isValidEmail,
-   deepGet,
-   numberWithCommas
+   deepGet
 } from '../utils'
 import { connect } from 'react-redux'
 import { showNotification } from '../redux/actions'
@@ -60,7 +59,7 @@ class ForCreateWithListPage extends Component {
 
    ///// METHODS FOR REACT LIFECYCLES /////
 
-   componentWillMount() {
+   UNSAFE_componentWillMount() {
       const { initializeEditingData } = this
       const editingData = initializeEditingData()
 
@@ -839,9 +838,7 @@ class ForCreateWithListPage extends Component {
       const {
          isValidColumn,
          hideAlert,
-         changeDetailsData,
-         calculate,
-         getPrefetchedValue
+         changeDetailsData
       } = this
       const { details } = this.state
       const { type, disabled, propForValue, placeholder } = column

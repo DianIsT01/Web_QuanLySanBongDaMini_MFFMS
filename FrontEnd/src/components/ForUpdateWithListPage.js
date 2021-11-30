@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import Section from './Section'
 import { Link, withRouter } from 'react-router-dom'
 import moment from 'moment'
-import { isEmpty, isLength, isNumeric } from 'validator'
+import { isEmpty, isLength, isNumeric, isString } from 'validator'
 import {
    isEmptyObj,
    isPhoneNumber,
@@ -13,8 +13,6 @@ import {
    isBefore,
    isValidEmail,
    deepGet,
-   numberWithCommas,
-   formatDateString,
    apiDelete,
    containsKeys,
    joinValueOfKeys,
@@ -119,8 +117,6 @@ class ForUpdateWithListPage extends Component {
          .catch(error => {
             showErrorNotification()
             this.setState({ loading: false })
-            // const { errors } = error.response.data.result
-            // this.setState({ showAlert: true })
          })
    }
 

@@ -6,7 +6,6 @@ import { isEmpty, isLength, isNumeric } from 'validator'
 import {
    isEmptyObj,
    isPhoneNumber,
-   apiGet,
    apiPut,
    scrollTop,
    isBefore,
@@ -42,7 +41,7 @@ class ForUpdatePasswordPage extends Component {
 
    ///// METHODS FOR REACT LIFECYCLES /////
 
-   componentWillMount() {
+   UNSAFE_componentWillMount() {
       const { initializeEditingData } = this
       const editingData = initializeEditingData()
 
@@ -73,8 +72,6 @@ class ForUpdatePasswordPage extends Component {
          .catch(error => {
             showErrorNotification()
             this.setState({ loading: false })
-            // const { errors } = error.response.data.result
-            // this.setState({ showAlert: true })
          })
    }
 

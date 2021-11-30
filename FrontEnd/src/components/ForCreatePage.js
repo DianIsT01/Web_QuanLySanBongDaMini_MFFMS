@@ -41,7 +41,7 @@ class ForCreatePage extends Component {
 
    ///// METHODS FOR REACT LIFECYCLES /////
 
-   componentWillMount() {
+   UNSAFE_componentWillMount() {
       const { initializeEditingData } = this
       const editingData = initializeEditingData()
 

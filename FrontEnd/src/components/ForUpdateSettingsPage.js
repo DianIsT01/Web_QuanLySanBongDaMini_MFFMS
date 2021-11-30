@@ -28,7 +28,7 @@ class ForUpdateSettingsPage extends Component {
 
    ///// METHODS FOR REACT LIFECYCLES /////
 
-   componentWillMount() {
+   UNSAFE_componentWillMount() {
       const { initializeEditingData } = this
       const editingData = initializeEditingData()
 
@@ -76,8 +76,6 @@ class ForUpdateSettingsPage extends Component {
          })
          .catch(error => {
             this.setState({ loading: false })
-            // const { errors } = error.response.data.result
-            // this.setState({ showAlert: true })
          })
    }
 
@@ -95,8 +93,6 @@ class ForUpdateSettingsPage extends Component {
          })
          .catch(error => {
             this.setState({ loading: false })
-            // const { errors } = error.response.data.result
-            // this.setState({ showAlert: true })
          })
    }
 

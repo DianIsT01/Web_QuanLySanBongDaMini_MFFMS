@@ -42,19 +42,12 @@ class ForUpdatePage extends Component {
 
    ///// METHODS FOR REACT LIFECYCLES /////
 
-   componentWillMount() {
+   UNSAFE_componentWillMount() {
       const { initializeEditingData } = this
       const editingData = initializeEditingData()
 
       this.setState({ editingData })
    }
-
-   // componentWillReceiveProps(nextProps) {
-   //    const { initializeEditingData } = this
-   //    const editingData = initializeEditingData(nextProps)
-
-   //    this.setState({ editingData })
-   // }
 
    componentDidMount() {
       const { fetchData } = this

@@ -5,8 +5,7 @@ import {
    scrollTop,
    print,
    apiGet,
-   formatDateString,
-   deepGet
+   formatDateString
 } from '../../utils'
 import LoadingIndicator from '../../components/LoadingIndicator'
 import { STATS_TABS, LONG_FETCHING_DATA_INTERVAL } from '../../constants'

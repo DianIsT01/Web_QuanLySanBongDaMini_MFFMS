@@ -818,12 +818,6 @@ class ForViewWithListPage extends Component {
                <i className="fas fa-redo"></i>&nbsp;&nbsp;Tải lại
             </span>
 
-            {/* {data !== null && (
-               <span className="button" onClick={exportData}>
-                  <i className="fas fa-file-export"></i>&nbsp;&nbsp;Xuất dữ liệu
-               </span>
-            )} */}
-
             {exportable && data !== null && (
                <span className="button" onClick={toggleExportReportDialog}>
                   <i className="fas fa-file-export"></i>&nbsp;&nbsp;Xuất báo cáo
@@ -964,9 +958,8 @@ class ForViewWithListPage extends Component {
    }
 
    renderField = field => {
-      const { isValidField, hideAlert, changeEditingData } = this
       const { editingData } = this.state
-      const { type, disabled, propForValue, placeholder } = field
+      const { type, propForValue, placeholder } = field
 
       switch (type) {
          case 'input': {
@@ -1058,13 +1051,6 @@ class ForViewWithListPage extends Component {
    }
 
    renderColumn = (column, index) => {
-      const {
-         isValidColumn,
-         hideAlert,
-         changeDetailsData,
-         calculate,
-         getPrefetchedValue
-      } = this
       const { details } = this.state
       const { type, disabled, propForValue, placeholder } = column
 
@@ -1093,19 +1079,6 @@ class ForViewWithListPage extends Component {
             )
          }
 
-         // case 'calculation': {
-         //    return (
-         //       <input
-         //          className="form-input-disabled"
-         //          type="text"
-         //          placeholder={placeholder}
-         //          value={deepGet(details[index], propForValue)}
-         //          onFocus={hideAlert}
-         //          disabled={true}
-         //       />
-         //    )
-         // }
-
          case 'number': {
             return (
                <input
@@ -1118,38 +1091,6 @@ class ForViewWithListPage extends Component {
                />
             )
          }
-
-         // case 'password': {
-         //    return (
-         //       <input
-         //          className="form-input-disabled"
-         //          type="password"
-         //          placeholder={placeholder}
-         //          value={deepGet(details[index], propForValue)}
-         //          onChange={e =>
-         //             changeDetailsData(e.target.value, propForValue, index)
-         //          }
-         //          onFocus={hideAlert}
-         //          disabled={true}
-         //       />
-         //    )
-         // }
-
-         // case 'email': {
-         //    return (
-         //       <input
-         //          className="form-input-disabled"
-         //          type="email"
-         //          placeholder={placeholder}
-         //          value={deepGet(details[index], propForValue)}
-         //          onChange={e =>
-         //             changeDetailsData(e.target.value, propForValue, index)
-         //          }
-         //          onFocus={hideAlert}
-         //          disabled={true}
-         //       />
-         //    )
-         // }
 
          case 'date': {
             return (
@@ -1179,26 +1120,11 @@ class ForViewWithListPage extends Component {
                />
             )
          }
-
-         // case 'textarea': {
-         //    return (
-         //       <textarea
-         //          className="form-input-disabled"
-         //          placeholder={placeholder}
-         //          value={deepGet(details[index], propForValue)}
-         //          onChange={e =>
-         //             changeDetailsData(e.target.value, propForValue, index)
-         //          }
-         //          onFocus={hideAlert}
-         //          disabled={true}
-         //       ></textarea>
-         //    )
-         // }
       }
    }
 
    renderDetailedList = () => {
-      const { addDetail, renderColumn, deleteDetail } = this
+      const { renderColumn } = this
       const { settings } = this.props
       const { details, entity } = settings
       const { columns } = details
