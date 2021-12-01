@@ -434,32 +434,6 @@ namespace MFFMS.API.Data.KhachHangRepository
             return khachHangToDelete;
         }
 
-        public async Task<KhachHang> RestoreById(string id)
-        {
-            var khachHangToRestoreById = await _context.DanhSachKhachHang.FirstOrDefaultAsync(x => x.MaKhachHang == id);
-
-            khachHangToRestoreById.DaXoa = 0;
-            khachHangToRestoreById.ThoiGianCapNhat = DateTime.Now;
-
-            _context.DanhSachKhachHang.Update(khachHangToRestoreById);
-            await _context.SaveChangesAsync();
-
-            return khachHangToRestoreById;
-        }
-
-        public async Task<KhachHang> TemporarilyDeleteById(string id)
-        {
-            var khachHangToTemporarilyDeleteById = await _context.DanhSachKhachHang.FirstOrDefaultAsync(x => x.MaKhachHang == id);
-
-            khachHangToTemporarilyDeleteById.DaXoa = 1;
-            khachHangToTemporarilyDeleteById.ThoiGianCapNhat = DateTime.Now;
-
-            _context.DanhSachKhachHang.Update(khachHangToTemporarilyDeleteById);
-            await _context.SaveChangesAsync();
-
-            return khachHangToTemporarilyDeleteById;
-        }
-
         public async Task<KhachHang> UpdateById(string id, KhachHangForUpdateDto khachHang)
         {
             var oldRecord = await _context.DanhSachKhachHang.AsNoTracking().FirstOrDefaultAsync(x => x.MaKhachHang == id);

@@ -16,8 +16,6 @@ namespace MFFMS.API.Data.SanBongRepository
         Task<SanBong> GetById(string id);
         Task<SanBong> Create(SanBongForCreateDto sanBong);
         Task<SanBong> UpdateById(string id, SanBongForUpdateDto sanBong);
-        Task<SanBong> TemporarilyDeleteById(string id);
-        Task<SanBong> RestoreById(string id);
         Task<SanBong> PermanentlyDeleteById(string id);
         int GetTotalPages();
         int GetTotalItems();

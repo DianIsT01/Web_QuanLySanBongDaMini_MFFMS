@@ -27,14 +27,14 @@ namespace MFFMS.API.Data.ChiTietDonNhapHangRepository
             int count = _context.DanhSachChiTietDonNhapHang.Count() + 1;
             string tempId = count.ToString();
             string currentYear = DateTime.Now.ToString("yy");
- 
+
             while (tempId.Length < 4)
             {
                 tempId = "0" + tempId;
             }
- 
+
             tempId = "CTDNH" + currentYear + tempId;
- 
+
             return tempId;
         }
         public async Task<ChiTietDonNhapHang> Create(ChiTietDonNhapHangForCreateDto chiTietDonNhapHang)
@@ -86,142 +86,142 @@ namespace MFFMS.API.Data.ChiTietDonNhapHangRepository
 
         public async Task<PagedList<ChiTietDonNhapHang>> GetAll(ChiTietDonNhapHangParams userParams)
         {
-                var result = _context.DanhSachChiTietDonNhapHang.Include(x => x.DonNhapHang).Include(x => x.TaiSanThietBi).AsQueryable();
-                var sortField = userParams.SortField;
-                var sortOrder = userParams.SortOrder;
-                var keyword = userParams.Keyword;
-                var thoiGianTaoBatDau = userParams.ThoiGianTaoBatDau;
-                var thoiGianTaoKetThuc = userParams.ThoiGianTaoKetThuc;
-                var thoiGianCapNhatBatDau = userParams.ThoiGianCapNhatBatDau;
-                var thoiGianCapNhatKetThuc = userParams.ThoiGianCapNhatKetThuc;
-                var trangThai = userParams.TrangThai;
-                var daXoa = userParams.DaXoa;
+            var result = _context.DanhSachChiTietDonNhapHang.Include(x => x.DonNhapHang).Include(x => x.TaiSanThietBi).AsQueryable();
+            var sortField = userParams.SortField;
+            var sortOrder = userParams.SortOrder;
+            var keyword = userParams.Keyword;
+            var thoiGianTaoBatDau = userParams.ThoiGianTaoBatDau;
+            var thoiGianTaoKetThuc = userParams.ThoiGianTaoKetThuc;
+            var thoiGianCapNhatBatDau = userParams.ThoiGianCapNhatBatDau;
+            var thoiGianCapNhatKetThuc = userParams.ThoiGianCapNhatKetThuc;
+            var trangThai = userParams.TrangThai;
+            var daXoa = userParams.DaXoa;
 
-                if (!string.IsNullOrEmpty(keyword))
-                {
-                    result = result.Where(x => x.MaDonNhapHang.ToString().ToLower().Contains(keyword.ToLower()) || x.MaTSTB.ToString() == keyword);
-                }
-
-                if (thoiGianTaoBatDau.GetHashCode() != 0 && thoiGianTaoKetThuc.GetHashCode() != 0)
-                {
-                    result = result.Where(x => x.ThoiGianTao >= thoiGianTaoBatDau && x.ThoiGianTao <= thoiGianTaoKetThuc);
-                }
-
-                if (thoiGianCapNhatBatDau.GetHashCode() != 0 && thoiGianCapNhatKetThuc.GetHashCode() != 0)
-                {
-                    result = result.Where(x => x.ThoiGianCapNhat >= thoiGianCapNhatBatDau && x.ThoiGianCapNhat <= thoiGianCapNhatKetThuc);
-                }
-
-                if (trangThai == -1 || trangThai == 1)
-                {
-                    result = result.Where(x => x.TrangThai == trangThai);
-                }
-
-                if (daXoa == 0 || daXoa == 1)
-                {
-                    result = result.Where(x => x.DaXoa == daXoa);
-                }
-
-                if (!string.IsNullOrEmpty(sortField) && !string.IsNullOrEmpty(sortOrder))
-                {
-                    switch (sortField)
-                    {
-                        case "MaDonNhapHang":
-                            if (string.Equals(sortOrder, "ASC", StringComparison.OrdinalIgnoreCase))
-                            {
-                                result = result.OrderBy(x => x.MaDonNhapHang);
-                            }
-                            else
-                            {
-                                result = result.OrderByDescending(x => x.MaDonNhapHang);
-                            }
-                            break;
-
-                        case "MaTSTB":
-                            if (string.Equals(sortOrder, "ASC", StringComparison.OrdinalIgnoreCase))
-                            {
-                                result = result.OrderBy(x => x.MaTSTB);
-                            }
-                            else
-                            {
-                                result = result.OrderByDescending(x => x.MaTSTB);
-                            }
-                            break;
-                        case "SoLuong":
-                            if (string.Equals(sortOrder, "ASC", StringComparison.OrdinalIgnoreCase))
-                            {
-                                result = result.OrderBy(x => x.SoLuong);
-                            }
-                            else
-                            {
-                                result = result.OrderByDescending(x => x.SoLuong);
-                            }
-                            break;
-                        case "DonGia":
-                            if (string.Equals(sortOrder, "ASC", StringComparison.OrdinalIgnoreCase))
-                            {
-                                result = result.OrderBy(x => x.DonGia);
-                            }
-                            else
-                            {
-                                result = result.OrderByDescending(x => x.DonGia);
-                            }
-                            break;
-                        case "DVT":
-                            if (string.Equals(sortOrder, "ASC", StringComparison.OrdinalIgnoreCase))
-                            {
-                                result = result.OrderBy(x => x.DVT);
-                            }
-                            else
-                            {
-                                result = result.OrderByDescending(x => x.DVT);
-                            }
-                            break;
-
-                        case "ThoiGianTao":
-                            if (string.Equals(sortOrder, "ASC", StringComparison.OrdinalIgnoreCase))
-                            {
-                                result = result.OrderBy(x => x.ThoiGianTao);
-                            }
-                            else
-                            {
-                                result = result.OrderByDescending(x => x.ThoiGianTao);
-                            }
-                            break;
-
-                        case "ThoiGianCapNhat":
-                            if (string.Equals(sortOrder, "ASC", StringComparison.OrdinalIgnoreCase))
-                            {
-                                result = result.OrderBy(x => x.ThoiGianCapNhat);
-                            }
-                            else
-                            {
-                                result = result.OrderByDescending(x => x.ThoiGianCapNhat);
-                            }
-                            break;
-
-                        case "TrangThai":
-                            if (string.Equals(sortOrder, "ASC", StringComparison.OrdinalIgnoreCase))
-                            {
-                                result = result.OrderBy(x => x.TrangThai);
-                            }
-                            else
-                            {
-                                result = result.OrderByDescending(x => x.TrangThai);
-                            }
-                            break;
-
-                        default:
-                            result = result.OrderByDescending(x => x.ThoiGianTao);
-                            break;
-                    }
-                }
-
-                _totalItems = result.Count();
-                _totalPages = (int)Math.Ceiling((double)_totalItems / (double)userParams.PageSize);
-
-                return await PagedList<ChiTietDonNhapHang>.CreateAsync(result, userParams.PageNumber, userParams.PageSize);
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                result = result.Where(x => x.MaDonNhapHang.ToString().ToLower().Contains(keyword.ToLower()) || x.MaTSTB.ToString() == keyword);
             }
+
+            if (thoiGianTaoBatDau.GetHashCode() != 0 && thoiGianTaoKetThuc.GetHashCode() != 0)
+            {
+                result = result.Where(x => x.ThoiGianTao >= thoiGianTaoBatDau && x.ThoiGianTao <= thoiGianTaoKetThuc);
+            }
+
+            if (thoiGianCapNhatBatDau.GetHashCode() != 0 && thoiGianCapNhatKetThuc.GetHashCode() != 0)
+            {
+                result = result.Where(x => x.ThoiGianCapNhat >= thoiGianCapNhatBatDau && x.ThoiGianCapNhat <= thoiGianCapNhatKetThuc);
+            }
+
+            if (trangThai == -1 || trangThai == 1)
+            {
+                result = result.Where(x => x.TrangThai == trangThai);
+            }
+
+            if (daXoa == 0 || daXoa == 1)
+            {
+                result = result.Where(x => x.DaXoa == daXoa);
+            }
+
+            if (!string.IsNullOrEmpty(sortField) && !string.IsNullOrEmpty(sortOrder))
+            {
+                switch (sortField)
+                {
+                    case "MaDonNhapHang":
+                        if (string.Equals(sortOrder, "ASC", StringComparison.OrdinalIgnoreCase))
+                        {
+                            result = result.OrderBy(x => x.MaDonNhapHang);
+                        }
+                        else
+                        {
+                            result = result.OrderByDescending(x => x.MaDonNhapHang);
+                        }
+                        break;
+
+                    case "MaTSTB":
+                        if (string.Equals(sortOrder, "ASC", StringComparison.OrdinalIgnoreCase))
+                        {
+                            result = result.OrderBy(x => x.MaTSTB);
+                        }
+                        else
+                        {
+                            result = result.OrderByDescending(x => x.MaTSTB);
+                        }
+                        break;
+                    case "SoLuong":
+                        if (string.Equals(sortOrder, "ASC", StringComparison.OrdinalIgnoreCase))
+                        {
+                            result = result.OrderBy(x => x.SoLuong);
+                        }
+                        else
+                        {
+                            result = result.OrderByDescending(x => x.SoLuong);
+                        }
+                        break;
+                    case "DonGia":
+                        if (string.Equals(sortOrder, "ASC", StringComparison.OrdinalIgnoreCase))
+                        {
+                            result = result.OrderBy(x => x.DonGia);
+                        }
+                        else
+                        {
+                            result = result.OrderByDescending(x => x.DonGia);
+                        }
+                        break;
+                    case "DVT":
+                        if (string.Equals(sortOrder, "ASC", StringComparison.OrdinalIgnoreCase))
+                        {
+                            result = result.OrderBy(x => x.DVT);
+                        }
+                        else
+                        {
+                            result = result.OrderByDescending(x => x.DVT);
+                        }
+                        break;
+
+                    case "ThoiGianTao":
+                        if (string.Equals(sortOrder, "ASC", StringComparison.OrdinalIgnoreCase))
+                        {
+                            result = result.OrderBy(x => x.ThoiGianTao);
+                        }
+                        else
+                        {
+                            result = result.OrderByDescending(x => x.ThoiGianTao);
+                        }
+                        break;
+
+                    case "ThoiGianCapNhat":
+                        if (string.Equals(sortOrder, "ASC", StringComparison.OrdinalIgnoreCase))
+                        {
+                            result = result.OrderBy(x => x.ThoiGianCapNhat);
+                        }
+                        else
+                        {
+                            result = result.OrderByDescending(x => x.ThoiGianCapNhat);
+                        }
+                        break;
+
+                    case "TrangThai":
+                        if (string.Equals(sortOrder, "ASC", StringComparison.OrdinalIgnoreCase))
+                        {
+                            result = result.OrderBy(x => x.TrangThai);
+                        }
+                        else
+                        {
+                            result = result.OrderByDescending(x => x.TrangThai);
+                        }
+                        break;
+
+                    default:
+                        result = result.OrderByDescending(x => x.ThoiGianTao);
+                        break;
+                }
+            }
+
+            _totalItems = result.Count();
+            _totalPages = (int)Math.Ceiling((double)_totalItems / (double)userParams.PageSize);
+
+            return await PagedList<ChiTietDonNhapHang>.CreateAsync(result, userParams.PageNumber, userParams.PageSize);
+        }
 
         public async Task<ChiTietDonNhapHang> GetById(string maDonNhapHang, string maTSTB)
         {
@@ -397,31 +397,6 @@ namespace MFFMS.API.Data.ChiTietDonNhapHangRepository
 
             return chiTietDonNhapHangToDelete;
         }
-
-        public async Task<ChiTietDonNhapHang> RestoreById(string maDonNhapHang, string maTSTB)
-        {
-            var chiTietDonNhapHangToRestoreById = await _context.DanhSachChiTietDonNhapHang.FirstOrDefaultAsync(x => x.MaDonNhapHang == maDonNhapHang && x.MaTSTB == maTSTB);
-
-            chiTietDonNhapHangToRestoreById.DaXoa = 0;
-            chiTietDonNhapHangToRestoreById.ThoiGianCapNhat = DateTime.Now;
-
-            _context.DanhSachChiTietDonNhapHang.Update(chiTietDonNhapHangToRestoreById);
-            await _context.SaveChangesAsync();
-            return chiTietDonNhapHangToRestoreById;
-        }
-
-        public async Task<ChiTietDonNhapHang> TemporarilyDeleteById(string maDonNhapHang, string maTSTB)
-        {
-            var chiTietDonNhapHangToTemporarilyDeleteById = await _context.DanhSachChiTietDonNhapHang.FirstOrDefaultAsync(x => x.MaDonNhapHang == maDonNhapHang && x.MaTSTB == maTSTB);
-
-            chiTietDonNhapHangToTemporarilyDeleteById.DaXoa = 1;
-            chiTietDonNhapHangToTemporarilyDeleteById.ThoiGianCapNhat = DateTime.Now;
-
-            _context.DanhSachChiTietDonNhapHang.Update(chiTietDonNhapHangToTemporarilyDeleteById);
-            await _context.SaveChangesAsync();
-            return chiTietDonNhapHangToTemporarilyDeleteById;
-        }
-
         public async Task<ChiTietDonNhapHang> UpdateById(string maDonNhapHang, string maTSTB, ChiTietDonNhapHangForUpdateDto chiTietDonNhapHang)
         {
             var oldRecord = await _context.DanhSachChiTietDonNhapHang.AsNoTracking().FirstOrDefaultAsync(x => x.MaDonNhapHang == maDonNhapHang && x.MaTSTB == maTSTB);

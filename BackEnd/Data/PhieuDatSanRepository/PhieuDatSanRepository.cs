@@ -102,7 +102,7 @@ namespace MFFMS.API.Data.PhieuDatSanRepository
                 result = result.Where(x => x.TongTien >= tongTienBatDau && x.TongTien <= tongTienKetThuc);
             }
 
-           // Base 
+            // Base 
             if (thoiGianTaoBatDau.GetHashCode() != 0 && thoiGianTaoKetThuc.GetHashCode() != 0)
             {
                 result = result.Where(x => x.ThoiGianTao >= thoiGianTaoBatDau && x.ThoiGianTao <= thoiGianTaoKetThuc);
@@ -532,31 +532,11 @@ namespace MFFMS.API.Data.PhieuDatSanRepository
             return phieuDatSanToDelete;
         }
 
-        public async Task<PhieuDatSan> RestoreById(string id)
-        {
-            var phieuDatSanToRestoreById = await _context.DanhSachPhieuDatSan.FirstOrDefaultAsync(x => x.MaPhieuDatSan == id);
-            phieuDatSanToRestoreById.DaXoa = 0;
-            phieuDatSanToRestoreById.ThoiGianCapNhat = DateTime.Now;
-            _context.DanhSachPhieuDatSan.Update(phieuDatSanToRestoreById);
-            await _context.SaveChangesAsync();
-            return phieuDatSanToRestoreById;
-        }
-
-        public async Task<PhieuDatSan> TemporarilyDeleteById(string id)
-        {
-            var phieuDatSanToTemporarilyDeleteById = await _context.DanhSachPhieuDatSan.FirstOrDefaultAsync(x => x.MaPhieuDatSan == id);
-            phieuDatSanToTemporarilyDeleteById.DaXoa = 1;
-            phieuDatSanToTemporarilyDeleteById.ThoiGianCapNhat = DateTime.Now;
-            _context.DanhSachPhieuDatSan.Update(phieuDatSanToTemporarilyDeleteById);
-            await _context.SaveChangesAsync();
-            return phieuDatSanToTemporarilyDeleteById;
-        }
-
         public async Task<PhieuDatSan> UpdateById(string id, PhieuDatSanForUpdateDto phieuDatSan)
         {
             var danhSachChiTietPhieuDatSan = _context.DanhSachChiTietPhieuDatSan.Where(x => x.MaPhieuDatSan == id);
             double daThanhToan = 0;
-            foreach(var item in danhSachChiTietPhieuDatSan)
+            foreach (var item in danhSachChiTietPhieuDatSan)
             {
                 daThanhToan = daThanhToan + item.TienCoc;
             }
@@ -569,7 +549,7 @@ namespace MFFMS.API.Data.PhieuDatSanRepository
             {
                 phieuDatSan.TrangThai = 1;
             }
-            else if(daThanhToan >= phieuDatSan.TongTien)
+            else if (daThanhToan >= phieuDatSan.TongTien)
             {
                 phieuDatSan.TrangThai = 2;
             }
@@ -587,7 +567,7 @@ namespace MFFMS.API.Data.PhieuDatSanRepository
                 DaXoa = oldRecord.DaXoa
             };
 
-            
+
 
             _context.DanhSachPhieuDatSan.Update(phieuDatSanToUpdateById);
             await _context.SaveChangesAsync();

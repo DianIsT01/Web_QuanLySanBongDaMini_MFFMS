@@ -399,30 +399,6 @@ namespace MFFMS.API.Data.DichVuRepository
             return dichVuToDelete;
         }
 
-        public async Task<DichVu> RestoreById(string id)
-        {
-            var dichVuToRestoreById = await _context.DanhSachDichVu.FirstOrDefaultAsync(x => x.MaDichVu == id);
-
-            dichVuToRestoreById.DaXoa = 0;
-            dichVuToRestoreById.ThoiGianCapNhat = DateTime.Now;
-
-            _context.DanhSachDichVu.Update(dichVuToRestoreById);
-            await _context.SaveChangesAsync();
-            return dichVuToRestoreById;
-        }
-
-        public async Task<DichVu> TemporarilyDeleteById(string id)
-        {
-            var dichVuToTemporarilyDeleteById = await _context.DanhSachDichVu.FirstOrDefaultAsync(x => x.MaDichVu == id);
-
-            dichVuToTemporarilyDeleteById.DaXoa = 1;
-            dichVuToTemporarilyDeleteById.ThoiGianCapNhat = DateTime.Now;
-
-            _context.DanhSachDichVu.Update(dichVuToTemporarilyDeleteById);
-            await _context.SaveChangesAsync();
-            return dichVuToTemporarilyDeleteById;
-        }
-
         public async Task<DichVu> UpdateById(string id, DichVuForUpdateDto dichVu)
         {
             var oldRecord = await _context.DanhSachDichVu.AsNoTracking().FirstOrDefaultAsync(x => x.MaDichVu == id);

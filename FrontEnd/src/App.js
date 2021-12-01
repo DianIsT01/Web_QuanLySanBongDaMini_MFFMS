@@ -28,7 +28,7 @@ class App extends Component {
 
    ///// METHODS FOR REACT LIFECYCLES /////
 
-   componentWillMount() {
+   UNSAFE_componentWillMount() {
       const { user } = this.props
       const localUser = JSON.parse(localStorage.getItem('MFFMS_USER')) || {}
 

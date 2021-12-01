@@ -16,8 +16,6 @@ namespace MFFMS.API.Data.NhanVienRepository
         Task<NhanVien> GetById(string id);
         Task<NhanVien> Create(NhanVienForCreateDto nhanVien);
         Task<NhanVien> UpdateById(string id, NhanVienForUpdateDto nhanVien);
-        Task<NhanVien> TemporarilyDeleteById(string id);
-        Task<NhanVien> RestoreById(string id);
         Task<NhanVien> PermanentlyDeleteById(string id);
         int GetTotalPages();
         int GetTotalItems();

@@ -458,26 +458,6 @@ namespace MFFMS.API.Data.DonNhapHangRepository
             return donNhapHangToDelete;
         }
 
-        public async Task<DonNhapHang> RestoreById(string id)
-        {
-            var donNhapHangToRestoreById = await _context.DanhSachDonNhapHang.FirstOrDefaultAsync(x => x.MaDonNhapHang == id);
-            donNhapHangToRestoreById.DaXoa = 0;
-            donNhapHangToRestoreById.ThoiGianCapNhat = DateTime.Now;
-            _context.DanhSachDonNhapHang.Update(donNhapHangToRestoreById);
-            await _context.SaveChangesAsync();
-            return donNhapHangToRestoreById;
-        }
-
-        public async Task<DonNhapHang> TemporarilyDeleteById(string id)
-        {
-            var donNhapHangToTemporarilyDeleteById = await _context.DanhSachDonNhapHang.FirstOrDefaultAsync(x => x.MaDonNhapHang == id);
-            donNhapHangToTemporarilyDeleteById.DaXoa = 1;
-            donNhapHangToTemporarilyDeleteById.ThoiGianCapNhat = DateTime.Now;
-            _context.DanhSachDonNhapHang.Update(donNhapHangToTemporarilyDeleteById);
-            await _context.SaveChangesAsync();
-            return donNhapHangToTemporarilyDeleteById;
-        }
-
         public async Task<DonNhapHang> UpdateById(string id, DonNhapHangForUpdateDto donNhapHang)
         {
             var oldRecord = await _context.DanhSachDonNhapHang.AsNoTracking().FirstOrDefaultAsync(x => x.MaDonNhapHang == id);

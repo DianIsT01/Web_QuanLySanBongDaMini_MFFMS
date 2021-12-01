@@ -15,8 +15,6 @@ namespace MFFMS.API.Data.DonNhapHangRepository
         Task<DonNhapHang> GetById(string id);
         Task<DonNhapHang> Create(DonNhapHangForCreateDto donNhapHang);
         Task<DonNhapHang> UpdateById(string id, DonNhapHangForUpdateDto donNhapHang);
-        Task<DonNhapHang> TemporarilyDeleteById(string id);
-        Task<DonNhapHang> RestoreById(string id);
         Task<DonNhapHang> PermanentlyDeleteById(string id);
         int GetTotalPages();
         int GetTotalItems();

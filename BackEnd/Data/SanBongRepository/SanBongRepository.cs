@@ -426,32 +426,6 @@ namespace MFFMS.API.Data.SanBongRepository
             return sanBongToDelete;
         }
 
-        public async Task<SanBong> RestoreById(string id)
-        {
-            var sanBongToRestoreById = await _context.DanhSachSanBong.FirstOrDefaultAsync(x => x.MaSanBong == id);
-
-            sanBongToRestoreById.DaXoa = 0;
-            sanBongToRestoreById.ThoiGianCapNhat = DateTime.Now;
-
-            _context.DanhSachSanBong.Update(sanBongToRestoreById);
-            await _context.SaveChangesAsync();
-
-            return sanBongToRestoreById;
-        }
-
-        public async Task<SanBong> TemporarilyDeleteById(string id)
-        {
-            var sanBongToTemporarilyDeleteById = await _context.DanhSachSanBong.FirstOrDefaultAsync(x => x.MaSanBong == id);
-
-            sanBongToTemporarilyDeleteById.DaXoa = 1;
-            sanBongToTemporarilyDeleteById.ThoiGianCapNhat = DateTime.Now;
-
-            _context.DanhSachSanBong.Update(sanBongToTemporarilyDeleteById);
-            await _context.SaveChangesAsync();
-
-            return sanBongToTemporarilyDeleteById;
-        }
-
         public async Task<SanBong> UpdateById(string id, SanBongForUpdateDto sanBong)
         {
             var oldRecord = await _context.DanhSachSanBong.AsNoTracking().FirstOrDefaultAsync(x => x.MaSanBong == id);

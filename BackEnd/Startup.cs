@@ -58,7 +58,7 @@ namespace MFFMS.API
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore); ;
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "MFFMS API", Description = "Mini Footbal Field Management System API" });
+                c.SwaggerDoc("v1", new Info { Title = "BACKEND MFFMS", Description = "Mini Footbal Field Management System API" });
             });
             services.AddCors();
             services.AddAutoMapper();

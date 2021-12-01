@@ -804,16 +804,6 @@ class ForAccountListPage extends Component {
                </Link>
             </span>
 
-            {/* {data.length !== 0 && (
-               <span className="button" onClick={exportData}>
-                  <i className="fas fa-file-export"></i>&nbsp;&nbsp;Xuất dữ liệu
-               </span>
-            )}
-
-            <span className="button" onClick={importData}>
-               <i className="fas fa-file-import"></i>&nbsp;&nbsp;Nhập dữ liệu
-            </span> */}
-
             {exportable && data.length !== 0 && (
                <span className="button" onClick={toggleExportReportDialog}>
                   <i className="fas fa-file-export"></i>&nbsp;&nbsp;Xuất báo cáo
@@ -874,13 +864,6 @@ class ForAccountListPage extends Component {
                      {column.text}
                   </th>
                ))}
-
-               {/* <th onClick={() => sortByColumn('TrangThai')}>
-                  {isBeingSorted('TrangThai') && (
-                     <i className="fas fa-sort sort-button"></i>
-                  )}{' '}
-                  Trạng thái
-               </th> */}
             </tr>
          </thead>
       )
@@ -1083,15 +1066,6 @@ class ForAccountListPage extends Component {
                   {getCellValue(column, record)}
                </td>
             ))}
-
-            {/* <td>
-               <span
-                  className="active-badge"
-                  style={getCurrentStatusColors(record.trangThai)}
-               >
-                  {getCurrentStatusText(record.trangThai)}
-               </span>
-            </td> */}
          </tr>
       ))
    }
@@ -1121,13 +1095,6 @@ class ForAccountListPage extends Component {
       return (
          <div className="table-pagination">
             <div className="table-pagination__left">
-               {/* {totalItems > 0 ? (
-                  <p>
-                     Danh sách có tất cả <strong>{totalItems}</strong> kết quả
-                  </p>
-               ) : (
-                  <p>Không có kết quả nào trong danh sách</p>
-               )} */}
             </div>
 
             <div className="table-pagination__right">
@@ -1220,8 +1187,6 @@ class ForAccountListPage extends Component {
          onExportToPdf: exportToPdf,
          onExportToXlsx: exportToXlsx,
          entity
-         // data,
-         // columns
       }
 
       return (

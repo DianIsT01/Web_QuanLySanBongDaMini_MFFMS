@@ -361,32 +361,6 @@ namespace MFFMS.API.Data.TaiSanThietBiRepository
             return TSTBToDelete;
         }
 
-        public async Task<TaiSanThietBi> RestoreById(string id)
-        {
-            var TSTBToRestoreById = await _context.DanhSachTaiSanThietBi.FirstOrDefaultAsync(x => x.MaTSTB == id);
-
-            TSTBToRestoreById.DaXoa = 0;
-            TSTBToRestoreById.ThoiGianCapNhat = DateTime.Now;
-
-            _context.DanhSachTaiSanThietBi.Update(TSTBToRestoreById);
-            await _context.SaveChangesAsync();
-
-            return TSTBToRestoreById;
-        }
-
-        public async Task<TaiSanThietBi> TemporarilyDeleteById(string id)
-        {
-            var TSTBTemporarilyDeleteById = await _context.DanhSachTaiSanThietBi.FirstOrDefaultAsync(x => x.MaTSTB == id);
-
-            TSTBTemporarilyDeleteById.DaXoa = 1;
-            TSTBTemporarilyDeleteById.ThoiGianCapNhat = DateTime.Now;
-
-            _context.DanhSachTaiSanThietBi.Update(TSTBTemporarilyDeleteById);
-            await _context.SaveChangesAsync();
-
-            return TSTBTemporarilyDeleteById;
-        }
-
         public async Task<TaiSanThietBi> UpdateById(string id, TaiSanThietBiForUpdateDto taiSanThietBi)
         {
             var oldRecord = await _context.DanhSachTaiSanThietBi.AsNoTracking().FirstOrDefaultAsync(x => x.MaTSTB == id);

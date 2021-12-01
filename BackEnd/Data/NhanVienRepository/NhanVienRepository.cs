@@ -507,32 +507,6 @@ namespace MFFMS.API.Data.NhanVienRepository
             return nhanVienToDelete;
         }
 
-        public async Task<NhanVien> RestoreById(string id)
-        {
-            var nhanVienToRestoreById = await _context.DanhSachNhanVien.FirstOrDefaultAsync(x => x.MaNhanVien == id);
-
-            nhanVienToRestoreById.DaXoa = 0;
-            nhanVienToRestoreById.ThoiGianCapNhat = DateTime.Now;
-
-            _context.DanhSachNhanVien.Update(nhanVienToRestoreById);
-            await _context.SaveChangesAsync();
-
-            return nhanVienToRestoreById;
-        }
-
-        public async Task<NhanVien> TemporarilyDeleteById(string id)
-        {
-            var nhanVienToTemporarilyDeleteById = await _context.DanhSachNhanVien.FirstOrDefaultAsync(x => x.MaNhanVien == id);
-
-            nhanVienToTemporarilyDeleteById.DaXoa = 1;
-            nhanVienToTemporarilyDeleteById.ThoiGianCapNhat = DateTime.Now;
-
-            _context.DanhSachNhanVien.Update(nhanVienToTemporarilyDeleteById);
-            await _context.SaveChangesAsync();
-
-            return nhanVienToTemporarilyDeleteById;
-        }
-
         public async Task<NhanVien> UpdateById(string id, NhanVienForUpdateDto nhanVien)
         {
             var oldRecord = await _context.DanhSachNhanVien.AsNoTracking().FirstOrDefaultAsync(x => x.MaNhanVien == id);

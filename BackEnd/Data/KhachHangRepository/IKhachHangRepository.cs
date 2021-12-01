@@ -15,8 +15,6 @@ namespace MFFMS.API.Data.KhachHangRepository
         Task<KhachHang> GetById(string id);
         Task<KhachHang> Create(KhachHangForCreateDto khachHang);
         Task<KhachHang> UpdateById(string id, KhachHangForUpdateDto khachHang);
-        Task<KhachHang> TemporarilyDeleteById(string id);
-        Task<KhachHang> RestoreById(string id);
         Task<KhachHang> PermanentlyDeleteById(string id);
         int GetTotalPages();
         int GetTotalItems();

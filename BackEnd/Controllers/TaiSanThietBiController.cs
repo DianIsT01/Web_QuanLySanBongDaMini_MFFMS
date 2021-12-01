@@ -31,7 +31,7 @@ namespace MFFMS.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] TaiSanThietBiParams userParams)
         {
-            try 
+            try
             {
                 var result = await _repo.GetAll(userParams);
                 var resultToReturn = _mapper.Map<IEnumerable<TaiSanThietBiForListDto>>(result);
@@ -207,64 +207,6 @@ namespace MFFMS.API.Controllers
                 return StatusCode(500, new FailedResponseDto
                 {
                     Message = "Cập nhật " + _entityName + " thất bại!",
-                    Result = new FailedResponseResultDto
-                    {
-                        Errors = e
-                    }
-                });
-            }
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> TemporarilyDeleteById(string id)
-        {
-            try
-            {
-                var result = await _repo.TemporarilyDeleteById(id);
-
-                return StatusCode(200, new SuccessResponseDto
-                {
-                    Message = "Xóa tạm thời " + _entityName + " thành công!",
-                    Result = new SuccessResponseResultWithSingleDataDto
-                    {
-                        Data = result
-                    }
-                });
-            }
-            catch (Exception e)
-            {
-                return StatusCode(500, new FailedResponseDto
-                {
-                    Message = "Xóa tạm thời " + _entityName + " thất bại!",
-                    Result = new FailedResponseResultDto
-                    {
-                        Errors = e
-                    }
-                });
-            }
-        }
-
-         [HttpPut("{id}")]
-        public async Task<IActionResult> RestoreById(string id)
-        {
-            try
-            {
-                var result = await _repo.RestoreById(id);
-
-                return StatusCode(200, new SuccessResponseDto
-                {
-                    Message = "Khôi phục " + _entityName + " thành công!",
-                    Result = new SuccessResponseResultWithSingleDataDto
-                    {
-                        Data = result
-                    }
-                });
-            }
-            catch (Exception e)
-            {
-                return StatusCode(500, new FailedResponseDto
-                {
-                    Message = "Khôi phục " + _entityName + " thất bại!",
                     Result = new FailedResponseResultDto
                     {
                         Errors = e

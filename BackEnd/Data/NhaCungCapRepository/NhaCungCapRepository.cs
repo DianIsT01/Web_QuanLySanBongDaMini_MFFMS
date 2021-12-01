@@ -330,32 +330,6 @@ namespace MFFMS.API.Data.NhaCungCapRepository
             return nhaCungCapToDelete;
         }
 
-        public async Task<NhaCungCap> RestoreById(string id)
-        {
-            var nhaCungCapToRestoreById = await _context.DanhSachNhaCungCap.FirstOrDefaultAsync(x => x.MaNhaCungCap == id);
-
-            nhaCungCapToRestoreById.DaXoa = 0;
-            nhaCungCapToRestoreById.ThoiGianCapNhat = DateTime.Now;
-
-            _context.DanhSachNhaCungCap.Update(nhaCungCapToRestoreById);
-            await _context.SaveChangesAsync();
-
-            return nhaCungCapToRestoreById;
-        }
-
-        public async Task<NhaCungCap> TemporarilyDeleteById(string id)
-        {
-            var nhaCungCapTemporarilyDeleteById = await _context.DanhSachNhaCungCap.FirstOrDefaultAsync(x => x.MaNhaCungCap == id);
-
-            nhaCungCapTemporarilyDeleteById.DaXoa = 1;
-            nhaCungCapTemporarilyDeleteById.ThoiGianCapNhat = DateTime.Now;
-
-            _context.DanhSachNhaCungCap.Update(nhaCungCapTemporarilyDeleteById);
-            await _context.SaveChangesAsync();
-
-            return nhaCungCapTemporarilyDeleteById;
-        }
-
         public async Task<NhaCungCap> UpdateById(string id, NhaCungCapForUpdateDto nhaCungCap)
         {
             var oldRecord = await _context.DanhSachNhaCungCap.AsNoTracking().FirstOrDefaultAsync(x => x.MaNhaCungCap == id);

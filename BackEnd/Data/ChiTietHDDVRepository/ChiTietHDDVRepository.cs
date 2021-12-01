@@ -25,7 +25,7 @@ namespace MFFMS.API.Data.ChiTietHDDVRepository
 
         }
 
-       
+
         public async Task<ChiTietHDDV> Create(ChiTietHDDVForCreateDto chiTietHDDV)
         {
             var newChiTietHDDV = new ChiTietHDDV
@@ -48,14 +48,14 @@ namespace MFFMS.API.Data.ChiTietHDDVRepository
         public async Task<ICollection<ChiTietHDDV>> CreateMultiple(ICollection<ChiTietHDDVForCreateMultipleDto> danhSachChiTietHDDV)
         {
             ICollection<ChiTietHDDV> temp = new List<ChiTietHDDV>();
-            for(int i = 0; i < danhSachChiTietHDDV.Count; i++)
+            for (int i = 0; i < danhSachChiTietHDDV.Count; i++)
             {
                 var chiTietHDDV = danhSachChiTietHDDV.ElementAt(i);
                 var newChiTietHDDV = new ChiTietHDDV
                 {
                     SoHDDV = chiTietHDDV.SoHDDV,
                     MaDichVu = chiTietHDDV.MaDichVu,
-                    SoLuong = chiTietHDDV.SoLuong, 
+                    SoLuong = chiTietHDDV.SoLuong,
                     DonGia = chiTietHDDV.DonGia,
                     ThanhTien = chiTietHDDV.ThanhTien,
                     ThoiGianTao = DateTime.Now,
@@ -72,7 +72,7 @@ namespace MFFMS.API.Data.ChiTietHDDVRepository
 
         public async Task<PagedList<ChiTietHDDV>> GetAll(ChiTietHDDVParams userParams)
         {
-            var result = _context.DanhSachChiTietHDDV.Include(x=>x.HoaDonDichVu).ThenInclude(x => x.KhachHang).Include(x=>x.DichVu).AsQueryable();
+            var result = _context.DanhSachChiTietHDDV.Include(x => x.HoaDonDichVu).ThenInclude(x => x.KhachHang).Include(x => x.DichVu).AsQueryable();
             var sortField = userParams.SortField;
             var sortOrder = userParams.SortOrder;
             var keyword = userParams.Keyword;
@@ -187,7 +187,7 @@ namespace MFFMS.API.Data.ChiTietHDDVRepository
 
         public object GetStatusStatistics(ChiTietHDDVParams userParams)
         {
-            var result = _context.DanhSachChiTietHDDV.Include(x => x.HoaDonDichVu).ThenInclude(x=>x.KhachHang).Include(x => x.DichVu).AsQueryable();
+            var result = _context.DanhSachChiTietHDDV.Include(x => x.HoaDonDichVu).ThenInclude(x => x.KhachHang).Include(x => x.DichVu).AsQueryable();
             var sortField = userParams.SortField;
             var sortOrder = userParams.SortOrder;
             var keyword = userParams.Keyword;
@@ -319,29 +319,6 @@ namespace MFFMS.API.Data.ChiTietHDDVRepository
 
             return chiTietHDDVToDelete;
         }
-        public async Task<ChiTietHDDV> RestoreById(string soHDDV, string maDichVu)
-        {
-            var chiTietHDDVToRestoreById = await _context.DanhSachChiTietHDDV.FirstOrDefaultAsync(x => x.SoHDDV == soHDDV && x.MaDichVu == maDichVu);
-
-            chiTietHDDVToRestoreById.DaXoa = 0;
-            chiTietHDDVToRestoreById.ThoiGianCapNhat = DateTime.Now;
-
-            _context.DanhSachChiTietHDDV.Update(chiTietHDDVToRestoreById);
-            await _context.SaveChangesAsync();
-            return chiTietHDDVToRestoreById;
-        }
-
-        public async Task<ChiTietHDDV> TemporarilyDeleteById(string soHDDV, string maDichVu)
-        {
-            var chiTietHDDVToTemporarilyDeleteById = await _context.DanhSachChiTietHDDV.FirstOrDefaultAsync(x => x.SoHDDV == soHDDV && x.MaDichVu == maDichVu);
-
-            chiTietHDDVToTemporarilyDeleteById.DaXoa = 1;
-            chiTietHDDVToTemporarilyDeleteById.ThoiGianCapNhat = DateTime.Now;
-
-            _context.DanhSachChiTietHDDV.Update(chiTietHDDVToTemporarilyDeleteById);
-            await _context.SaveChangesAsync();
-            return chiTietHDDVToTemporarilyDeleteById;
-        }
 
         public async Task<ChiTietHDDV> UpdateById(string soHDDV, string maDichVu, ChiTietHDDVForUpdateDto chiTietHDDV)
         {
@@ -361,6 +338,6 @@ namespace MFFMS.API.Data.ChiTietHDDVRepository
             _context.DanhSachChiTietHDDV.Update(chiTietHDDVToUpdate);
             await _context.SaveChangesAsync();
             return chiTietHDDVToUpdate;
-        } 
+        }
     }
 }

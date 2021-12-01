@@ -16,8 +16,6 @@ namespace MFFMS.API.Data.ChiTietHDDVRepository
         Task<ChiTietHDDV> GetById(string soHDDV, string maDichVu);
         Task<ChiTietHDDV> Create(ChiTietHDDVForCreateDto chiTietHDDV);
         Task<ChiTietHDDV> UpdateById(string soHDDV, string maDichVu, ChiTietHDDVForUpdateDto chiTietHDDV);
-        Task<ChiTietHDDV> TemporarilyDeleteById(string soHDDV, string maDichVu);
-        Task<ChiTietHDDV> RestoreById(string soHDDV, string maDichVu);
         Task<ChiTietHDDV> PermanentlyDeleteById(string soHDDV, string maDichVu);
         int GetTotalPages();
         int GetTotalItems();

@@ -21,8 +21,6 @@ namespace MFFMS.API.Data
         int GetTotalPages();
         int GetTotalItems();
         Object GetStatusStatistics(TaiKhoanParams taiKhoanParams);
-        Task<TaiKhoan> TemporarilyDeleteById(string id);
-        Task<TaiKhoan> RestoreById(string id);
         Task<TaiKhoan> PermanentlyDeleteById(string id);
         Task<TaiKhoan> ChangePassword(string id, TaiKhoanForChangePasswordDto taiKhoan);
         Task<TaiKhoan> ResetPassword(string id);

@@ -27,14 +27,14 @@ namespace MFFMS.API.Data
             int count = _context.DanhSachTaiKhoan.Count() + 1;
             string tempId = count.ToString();
             string currentYear = DateTime.Now.ToString("yy");
- 
+
             while (tempId.Length < 4)
             {
                 tempId = "0" + tempId;
             }
- 
+
             tempId = "TK" + currentYear + tempId;
- 
+
             return tempId;
         }
 
@@ -158,8 +158,8 @@ namespace MFFMS.API.Data
             var trangThai = userParams.TrangThai;
             var daXoa = userParams.DaXoa;
 
-           // Tai khoan
-           if (!string.IsNullOrEmpty(maTaiKhoan))
+            // Tai khoan
+            if (!string.IsNullOrEmpty(maTaiKhoan))
             {
                 result = result.Where(x => x.MaTaiKhoan.ToLower().Contains(maTaiKhoan.ToLower()));
             }
@@ -219,8 +219,8 @@ namespace MFFMS.API.Data
             {
                 result = result.Where(x => x.TrangThai == trangThai);
             }
-            
-            if(daXoa == 1 || daXoa == 0)
+
+            if (daXoa == 1 || daXoa == 0)
             {
                 result = result.Where(x => x.DaXoa == daXoa);
             }
@@ -456,19 +456,6 @@ namespace MFFMS.API.Data
             return taiKhoanToDelete;
         }
 
-        public async Task<TaiKhoan> RestoreById(string id)
-        {
-            var taiKhoanToRestoreById = await _context.DanhSachTaiKhoan.FirstOrDefaultAsync(x => x.MaTaiKhoan == id);
-
-            taiKhoanToRestoreById.DaXoa = 0;
-            taiKhoanToRestoreById.ThoiGianCapNhat = DateTime.Now;
-
-            _context.DanhSachTaiKhoan.Update(taiKhoanToRestoreById);
-            await _context.SaveChangesAsync();
-
-            return taiKhoanToRestoreById;
-        }
-
         public async Task<bool> TaiKhoanTonTai(string tenDangNhap)
         {
             var result = await _context.DanhSachTaiKhoan.FirstOrDefaultAsync(x => x.TenDangNhap == tenDangNhap);
@@ -494,19 +481,6 @@ namespace MFFMS.API.Data
             await _context.SaveChangesAsync();
 
             return taiKhoan;
-        }
-
-        public async Task<TaiKhoan> TemporarilyDeleteById(string id)
-        {
-            var taiKhoanToTemporarilyDeleteById = await _context.DanhSachTaiKhoan.FirstOrDefaultAsync(x => x.MaTaiKhoan == id);
-
-            taiKhoanToTemporarilyDeleteById.DaXoa = 1;
-            taiKhoanToTemporarilyDeleteById.ThoiGianCapNhat = DateTime.Now;
-
-            _context.DanhSachTaiKhoan.Update(taiKhoanToTemporarilyDeleteById);
-            await _context.SaveChangesAsync();
-
-            return taiKhoanToTemporarilyDeleteById;
         }
 
         public async Task<TaiKhoan> UpdateById(string id, TaiKhoanForUpdateDto taiKhoan)

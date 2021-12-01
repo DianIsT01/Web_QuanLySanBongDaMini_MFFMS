@@ -16,8 +16,7 @@ namespace MFFMS.API.Data.HoaDonDichVuRepository
         Task<HoaDonDichVu> GetById(string id);
         Task<HoaDonDichVu> Create(HoaDonDichVuForCreateDto hoaDonDichVu);
         Task<HoaDonDichVu> UpdateById(string id, HoaDonDichVuForUpdateDto hoaDonDichVu);
-        Task<HoaDonDichVu> TemporarilyDeleteById(string id);
-        Task<HoaDonDichVu> RestoreById(string id);
+
         Task<HoaDonDichVu> PermanentlyDeleteById(string id);
         int GetTotalPages();
         int GetTotalItems();

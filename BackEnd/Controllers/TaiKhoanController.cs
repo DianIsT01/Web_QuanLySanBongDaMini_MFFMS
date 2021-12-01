@@ -194,93 +194,6 @@ namespace MFFMS.API.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> PermanentlyDeleteById(string id)
-        {
-            try
-            {
-                var result = await _repo.PermanentlyDeleteById(id);
-
-                return StatusCode(200, new SuccessResponseDto
-                {
-                    Message = "Xóa " + _entityName + " thành công!",
-                    Result = new SuccessResponseResultWithSingleDataDto
-                    {
-                        Data = result
-                    }
-                });
-            }
-            catch (Exception e)
-            {
-                return StatusCode(500, new FailedResponseDto
-                {
-                    Message = "Xóa " + _entityName + " thất bại!",
-                    Result = new FailedResponseResultDto
-                    {
-                        Errors = e
-                    }
-                });
-            }
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> TemporarilyDeleteById(string id)
-        {
-            try
-            {
-                var result = await _repo.TemporarilyDeleteById(id);
-
-                return StatusCode(200, new SuccessResponseDto
-                {
-                    Message = "Xóa tạm thời " + _entityName + " thành công!",
-                    Result = new SuccessResponseResultWithSingleDataDto
-                    {
-                        Data = result
-                    }
-                });
-            }
-            catch (Exception e)
-            {
-                return StatusCode(500, new FailedResponseDto
-                {
-                    Message = "Xóa tạm thời " + _entityName + " thất bại!",
-                    Result = new FailedResponseResultDto
-                    {
-                        Errors = e
-                    }
-                });
-            }
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> RestoreById(string id)
-        {
-            try
-            {
-                var result = await _repo.RestoreById(id);
-
-                return StatusCode(200, new SuccessResponseDto
-                {
-                    Message = "Khôi phục " + _entityName + " thành công!",
-                    Result = new SuccessResponseResultWithSingleDataDto
-                    {
-                        Data = result
-                    }
-                });
-            }
-            catch (Exception e)
-            {
-                return StatusCode(500, new FailedResponseDto
-                {
-                    Message = "Khôi phục " + _entityName + " thất bại!",
-                    Result = new FailedResponseResultDto
-                    {
-                        Errors = e
-                    }
-                });
-            }
-        }
-
         [HttpPost]
         public async Task<IActionResult> Register(TaiKhoanForCreateDto taiKhoan)
         {
@@ -385,25 +298,6 @@ namespace MFFMS.API.Controllers
                     });
                 }
 
-                //var claims = new[]
-                //{
-                //    new Claim(ClaimTypes.NameIdentifier, taiKhoanDuocDangNhap.MaTaiKhoan.ToString()),
-                //    new Claim(ClaimTypes.Name, taiKhoanDuocDangNhap.TenDangNhap),
-                //    new Claim(ClaimTypes.Role, taiKhoanDuocDangNhap.PhanQuyen)
-                //};
-
-                //var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
-                //var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
-                //var tokenDescriptor = new SecurityTokenDescriptor
-                //{
-                //    Subject = new ClaimsIdentity(claims),
-                //    Expires = DateTime.Now.AddDays(1),
-                //    SigningCredentials = creds
-                //};
-
-                //var tokenHandler = new JwtSecurityTokenHandler();
-                //var token = tokenHandler.CreateToken(tokenDescriptor);
-
                 return StatusCode(200, new SuccessResponseDto
                 {
                     Message = "Đăng nhập vào hệ thống thành công!",
@@ -418,6 +312,35 @@ namespace MFFMS.API.Controllers
                 return StatusCode(500, new FailedResponseDto
                 {
                     Message = "Đăng nhập vào hệ thống thất bại!",
+                    Result = new FailedResponseResultDto
+                    {
+                        Errors = e
+                    }
+                });
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> PermanentlyDeleteById(string id)
+        {
+            try
+            {
+                var result = await _repo.PermanentlyDeleteById(id);
+
+                return StatusCode(200, new SuccessResponseDto
+                {
+                    Message = "Xóa " + _entityName + " thành công!",
+                    Result = new SuccessResponseResultWithSingleDataDto
+                    {
+                        Data = result
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, new FailedResponseDto
+                {
+                    Message = "Xóa " + _entityName + " thất bại!",
                     Result = new FailedResponseResultDto
                     {
                         Errors = e

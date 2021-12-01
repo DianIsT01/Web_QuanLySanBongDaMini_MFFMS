@@ -562,30 +562,6 @@ namespace MFFMS.API.Data.HoaDonDichVuRepository
             return hoaDonDichVuToDelete;
         }
 
-        public async Task<HoaDonDichVu> RestoreById(string id)
-        {
-            var hoaDonDichVuToRestoreById = await _context.DanhSachHoaDonDichVu.FirstOrDefaultAsync(x => x.SoHDDV == id);
-
-            hoaDonDichVuToRestoreById.DaXoa = 0;
-            hoaDonDichVuToRestoreById.ThoiGianCapNhat = DateTime.Now;
-
-            _context.DanhSachHoaDonDichVu.Update(hoaDonDichVuToRestoreById);
-            await _context.SaveChangesAsync();
-            return hoaDonDichVuToRestoreById;
-        }
-
-        public async Task<HoaDonDichVu> TemporarilyDeleteById(string id)
-        {
-            var hoaDonDichVuToTemporarilyDeleteById = await _context.DanhSachHoaDonDichVu.FirstOrDefaultAsync(x => x.SoHDDV == id);
-
-            hoaDonDichVuToTemporarilyDeleteById.DaXoa = 1;
-            hoaDonDichVuToTemporarilyDeleteById.ThoiGianCapNhat = DateTime.Now;
-
-            _context.DanhSachHoaDonDichVu.Update(hoaDonDichVuToTemporarilyDeleteById);
-            await _context.SaveChangesAsync();
-            return hoaDonDichVuToTemporarilyDeleteById;
-        }
-
         public async Task<HoaDonDichVu> UpdateById(string id, HoaDonDichVuForUpdateDto hoaDonDichVu)
         {
             var oldRecord = await _context.DanhSachHoaDonDichVu.AsNoTracking().FirstOrDefaultAsync(x => x.SoHDDV == id);

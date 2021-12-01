@@ -16,8 +16,6 @@ namespace MFFMS.API.Data.DichVuRepository
         Task<DichVu> GetById(string id);
         Task<DichVu> Create(DichVuForCreateDto dichVu);
         Task<DichVu> UpdateById(string id, DichVuForUpdateDto dichVu);
-        Task<DichVu> TemporarilyDeleteById(string id);
-        Task<DichVu> RestoreById(string id);
         Task<DichVu> PermanentlyDeleteById(string id);
         int GetTotalPages();
         int GetTotalItems();

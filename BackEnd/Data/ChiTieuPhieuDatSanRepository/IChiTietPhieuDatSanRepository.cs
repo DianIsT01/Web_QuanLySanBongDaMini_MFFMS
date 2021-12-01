@@ -16,8 +16,6 @@ namespace MFFMS.API.Data.ChiTieuPhieuDatSanRepository
         Task<ChiTietPhieuDatSan> GetById(int id);
         Task<ChiTietPhieuDatSan> Create(ChiTietPhieuDatSanForCreateDto chiTietPhieuDatSan);
         Task<ChiTietPhieuDatSan> UpdateById(int id, ChiTietPhieuDatSanForUpdateDto chiTietPhieuDatSan);
-        Task<ChiTietPhieuDatSan> TemporarilyDeleteById(int id);
-        Task<ChiTietPhieuDatSan> RestoreById(int id);
         Task<ChiTietPhieuDatSan> PermanentlyDeleteById(int id);
         int GetTotalPages();
         int GetTotalItems();

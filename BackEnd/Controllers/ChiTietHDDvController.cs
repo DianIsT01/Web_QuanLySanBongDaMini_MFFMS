@@ -65,14 +65,14 @@ namespace MFFMS.API.Controllers
             }
         }
 
-        
+
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(string soHDDV, string maDichVu)
         {
             try
             {
-                var result = await _repo.GetById(soHDDV,maDichVu);
+                var result = await _repo.GetById(soHDDV, maDichVu);
                 var resultToReturn = _mapper.Map<ChiTietHDDVForViewDto>(result);
 
                 return StatusCode(200, new SuccessResponseDto
@@ -131,18 +131,18 @@ namespace MFFMS.API.Controllers
         {
             try
             {
-                
-                    var result = await _repo.CreateMultiple(danhSachChiTietHDDV);
 
-                    return StatusCode(201, new SuccessResponseDto
+                var result = await _repo.CreateMultiple(danhSachChiTietHDDV);
+
+                return StatusCode(201, new SuccessResponseDto
+                {
+                    Message = "Nhập dữ liệu cho " + _entityName + " thành công!",
+                    Result = new SuccessResponseResultWithSingleDataDto
                     {
-                        Message = "Nhập dữ liệu cho " + _entityName + " thành công!",
-                        Result = new SuccessResponseResultWithSingleDataDto
-                        {
-                            Data = result
-                        }
-                    });
-                
+                        Data = result
+                    }
+                });
+
             }
             catch (Exception e)
             {
@@ -162,7 +162,7 @@ namespace MFFMS.API.Controllers
         {
             try
             {
-                var result = await _repo.UpdateById(soHDDV,maDichVu, chiTietHDDV);
+                var result = await _repo.UpdateById(soHDDV, maDichVu, chiTietHDDV);
 
                 return StatusCode(200, new SuccessResponseDto
                 {
@@ -186,71 +186,12 @@ namespace MFFMS.API.Controllers
             }
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> TemporarilyDeleteById(string soHDDV, string maDichVu)
-        {
-            try
-            {
-                var result = await _repo.TemporarilyDeleteById(soHDDV,maDichVu);
-
-                return StatusCode(200, new SuccessResponseDto
-                {
-                    Message = "Xóa tạm thời " + _entityName + " thành công!",
-                    Result = new SuccessResponseResultWithSingleDataDto
-                    {
-                        Data = result
-                    }
-                });
-            }
-            catch (Exception e)
-            {
-                return StatusCode(500, new FailedResponseDto
-                {
-                    Message = "Xóa tạm thời " + _entityName + " thất bại!",
-                    Result = new FailedResponseResultDto
-                    {
-                        Errors = e
-                    }
-                });
-            }
-        }
-
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> RestoreById(string soHDDV, string maDichVu)
-        {
-            try
-            {
-                var result = await _repo.RestoreById(soHDDV, maDichVu);
-
-                return StatusCode(200, new SuccessResponseDto
-                {
-                    Message = "Khôi phục " + _entityName + " thành công!",
-                    Result = new SuccessResponseResultWithSingleDataDto
-                    {
-                        Data = result
-                    }
-                });
-            }
-            catch (Exception e)
-            {
-                return StatusCode(500, new FailedResponseDto
-                {
-                    Message = "Khôi phục " + _entityName + " thất bại!",
-                    Result = new FailedResponseResultDto
-                    {
-                        Errors = e
-                    }
-                });
-            }
-        }
-
         [HttpDelete("{id}")]
         public async Task<IActionResult> PermanentlyDeleteById(string soHDDV, string maDichVu)
         {
             try
             {
-                var result = await _repo.PermanentlyDeleteById(soHDDV,maDichVu);
+                var result = await _repo.PermanentlyDeleteById(soHDDV, maDichVu);
 
                 return StatusCode(200, new SuccessResponseDto
                 {

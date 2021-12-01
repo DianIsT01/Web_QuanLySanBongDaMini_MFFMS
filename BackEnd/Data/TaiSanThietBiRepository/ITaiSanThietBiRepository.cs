@@ -16,8 +16,6 @@ namespace MFFMS.API.Data.TaiSanThietBiRepository
         Task<TaiSanThietBi> GetById(string id);
         Task<TaiSanThietBi> Create(TaiSanThietBiForCreateDto taiSanThietBi);
         Task<TaiSanThietBi> UpdateById(string id, TaiSanThietBiForUpdateDto taiSanThietBi);
-        Task<TaiSanThietBi> TemporarilyDeleteById(string id);
-        Task<TaiSanThietBi> RestoreById(string id);
         Task<TaiSanThietBi> PermanentlyDeleteById(string id);
         int GetTotalPages();
         int GetTotalItems();

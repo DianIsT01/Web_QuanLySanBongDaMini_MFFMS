@@ -15,8 +15,6 @@ namespace MFFMS.API.Data.ChiTietDonNhapHangRepository
         Task<ChiTietDonNhapHang> GetById(string maDonNhapHang, string maTSTB);
         Task<ChiTietDonNhapHang> Create(ChiTietDonNhapHangForCreateDto chiTietDonNhapHang);
         Task<ChiTietDonNhapHang> UpdateById(string maDonNhapHang, string maTSTB, ChiTietDonNhapHangForUpdateDto chiTietDonNhapHang);
-        Task<ChiTietDonNhapHang> TemporarilyDeleteById(string maDonNhapHang, string maTSTB);
-        Task<ChiTietDonNhapHang> RestoreById(string maDonNhapHang, string maTSTB);
         Task<ChiTietDonNhapHang> PermanentlyDeleteById(string maDonNhapHang, string maTSTB);
         int GetTotalPages();
         int GetTotalItems();

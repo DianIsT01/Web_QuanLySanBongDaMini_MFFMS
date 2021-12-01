@@ -16,8 +16,6 @@ namespace MFFMS.API.Data.NhaCungCapRepository
         Task<NhaCungCap> GetById(string id);
         Task<NhaCungCap> Create(NhaCungCapForCreateDto nhaCungCap);
         Task<NhaCungCap> UpdateById(string id, NhaCungCapForUpdateDto nhaCungCap);
-        Task<NhaCungCap> TemporarilyDeleteById(string id);
-        Task<NhaCungCap> RestoreById(string id);
         Task<NhaCungCap> PermanentlyDeleteById(string id);
 
         int GetTotalPages();
@@ -25,7 +23,7 @@ namespace MFFMS.API.Data.NhaCungCapRepository
 
         Object GetStatusStatistics(NhaCungCapParams userParams);
         Task<Object> GetGeneralStatistics(NhaCungCapStatisticsParams userParams);
-        
+
         ValidationResultDto ValidateBeforeCreate(NhaCungCapForCreateDto nhaCungCap);
         ValidationResultDto ValidateBeforeUpdate(string id, NhaCungCapForUpdateDto nhaCungCap);
 

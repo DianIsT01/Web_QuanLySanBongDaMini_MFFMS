@@ -20,14 +20,14 @@ namespace MFFMS.API.Controllers
         private readonly IChiTietPhieuDatSanRepository _repo;
         private readonly IMapper _mapper;
         private readonly string _entityName;
-        public ChiTietPhieuDatSanController (IChiTietPhieuDatSanRepository repo, IMapper mapper)
+        public ChiTietPhieuDatSanController(IChiTietPhieuDatSanRepository repo, IMapper mapper)
         {
             _repo = repo;
             _mapper = mapper;
             _entityName = "chi tiết phiếu đặt sân";
         }
 
-        
+
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] ChiTietPhieuDatSanParams userParams)
         {
@@ -66,7 +66,7 @@ namespace MFFMS.API.Controllers
             }
         }
 
-        
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -97,7 +97,7 @@ namespace MFFMS.API.Controllers
             }
         }
 
-        
+
         [HttpPost]
         public async Task<IActionResult> Create(ChiTietPhieuDatSanForCreateDto chiTietPhieuDatSan)
         {
@@ -188,7 +188,7 @@ namespace MFFMS.API.Controllers
             }
         }
 
-        
+
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateById(int id, ChiTietPhieuDatSanForUpdateDto chiTietPhieuDatSan)
         {
@@ -226,63 +226,6 @@ namespace MFFMS.API.Controllers
                 return StatusCode(500, new FailedResponseDto
                 {
                     Message = "Cập nhật " + _entityName + " thất bại!",
-                    Result = new FailedResponseResultDto
-                    {
-                        Errors = e
-                    }
-                });
-            }
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> TemporarilyDeleteById(int id)
-        {
-            try
-            {
-                var result = await _repo.TemporarilyDeleteById(id);
-
-                return StatusCode(200, new SuccessResponseDto
-                {
-                    Message = "Xóa tạm thời " + _entityName + " thành công!",
-                    Result = new SuccessResponseResultWithSingleDataDto
-                    {
-                        Data = result
-                    }
-                });
-            }
-            catch (Exception e)
-            {
-                return StatusCode(500, new FailedResponseDto
-                {
-                    Message = "Xóa tạm thời " + _entityName + " thất bại!",
-                    Result = new FailedResponseResultDto
-                    {
-                        Errors = e
-                    }
-                });
-            }
-        }
-        [HttpPut("{id}")]
-        public async Task<IActionResult> RestoreById(int id)
-        {
-            try
-            {
-                var result = await _repo.RestoreById(id);
-
-                return StatusCode(200, new SuccessResponseDto
-                {
-                    Message = "Khôi phục " + _entityName + " thành công!",
-                    Result = new SuccessResponseResultWithSingleDataDto
-                    {
-                        Data = result
-                    }
-                });
-            }
-            catch (Exception e)
-            {
-                return StatusCode(500, new FailedResponseDto
-                {
-                    Message = "Khôi phục " + _entityName + " thất bại!",
                     Result = new FailedResponseResultDto
                     {
                         Errors = e
