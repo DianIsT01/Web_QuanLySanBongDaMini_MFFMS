@@ -747,13 +747,13 @@ class ForUpdateWithListPage extends Component {
    showSuccessNotification = () => {
       const { showNotification } = this.props
 
-      showNotification('success', 'Xuất báo cáo thành công!')
+      showNotification('success', 'Cập nhật thông tin thành công!')
    }
 
    showErrorNotification = () => {
       const { showNotification } = this.props
 
-      showNotification('error', 'Xuất báo cáo thất bại!')
+      showNotification('error', 'Cập nhật thông tin thất bại!')
    }
 
    renderHeader = () => {
