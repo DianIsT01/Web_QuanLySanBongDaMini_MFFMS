@@ -95,7 +95,7 @@ class DonNhapHangForView extends Component {
             },
             {
                label: 'Ngày lập đơn',
-               propForValue: 'ngayLapDon',
+               propForValue: 'ngayLap',
                type: 'date'
             },
             {
