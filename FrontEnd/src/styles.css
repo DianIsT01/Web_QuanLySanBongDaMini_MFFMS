@@ -81,7 +81,7 @@ main {
 .main-header__dropdown-menu {
    position: absolute;
    right: 0;
-   top: 60px;
+   top: 70px;
    background-color: white;
    border: 1px solid gray;
    width: 220px;
@@ -1331,8 +1331,8 @@ tr th:not(:first-child) {
 .stats-cards {
    display: grid;
    grid-template-columns: repeat(3, 1fr);
-   grid-column-gap: 24px;
-   grid-row-gap: 24px;
+   column-gap: 24px;
+   row-gap: 24px;
 }
 
 .stats-card__label {

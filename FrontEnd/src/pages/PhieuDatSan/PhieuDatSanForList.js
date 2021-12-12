@@ -161,8 +161,8 @@ class PhieuDatSanForList extends Component {
                search: {
                   type: 'slider',
                   min: 0,
-                  max: 100000000,
-                  step: 1000000,
+                  max: 10000000,
+                  step: 500000,
                   placeholder: 'Thành tiền'
                }
             }

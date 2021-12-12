@@ -40,8 +40,8 @@ class DichVuForList extends Component {
                search: {
                   type: 'slider',
                   min: 0,
-                  max: 100000000,
-                  step: 1000000,
+                  max: 1000000,
+                  step: 100000,
                   placeholder: 'Đơn giá'
                }
             },

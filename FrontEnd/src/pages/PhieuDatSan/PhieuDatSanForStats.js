@@ -19,21 +19,9 @@ class PhieuDatSanForStats extends Component {
                unit: 'Phiếu'
             },
             {
-               label: 'Khách hàng đặt sân nhiều nhất',
-               propForValue: 'datSanNhieuNhat.tenKhachHang',
-               icon: 'fas fa-calendar-alt',
-               unit: 'Khách hàng'
-            },
-            {
-               label: 'Nhân viên tiếp nhận đặt sân nhiều nhất',
-               propForValue: 'tiepNhanDatSanNhieuNhat.tenNhanVien',
-               icon: 'fas fa-calendar-alt',
-               unit: 'Nhân viên'
-            },
-            {
                label: 'Sân bóng được đặt nhiều nhất',
                propForValue: 'duocDatNhieuNhat.tenSanBong',
-               icon: 'fas fa-calendar-alt',
+               icon: 'far fa-futbol',
                unit: 'Sân bóng'
             }
          ]

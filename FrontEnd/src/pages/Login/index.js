@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { showNotification, logIn } from '../../redux/actions'
 import apiRoutes from '../../routes/apis'
 import { apiPost, isEmptyObj } from '../../utils'
-import { APP_SHORT_NAME, APP_DESCRIPTION, APP_ABOUT } from '../../constants'
+import { APP_SHORT_NAME, APP_DESCRIPTION, APP_ABOUT} from '../../constants'
 import LoadingIndicator from '../../components/LoadingIndicator'
 import { withRouter } from 'react-router-dom'
 

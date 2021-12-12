@@ -684,32 +684,6 @@ class ForAccountListPage extends Component {
       return pageNumbers
    }
 
-   getCurrentStatusColors = statusCode => {
-      switch (parseInt(statusCode)) {
-         case -1:
-            return {
-               backgroundColor: 'lightgray',
-               color: 'gray'
-            }
-
-         case 1:
-            return {
-               backgroundColor: '#0BBE51',
-               color: '#fff'
-            }
-      }
-   }
-
-   getCurrentStatusText = statusCode => {
-      switch (parseInt(statusCode)) {
-         case -1:
-            return 'Đã bị xóa'
-
-         case 1:
-            return 'Đang hiển thị'
-      }
-   }
-
    getDateRangePickerValue = (propName, defaultValue = '') => {
       const { searchData } = this.state
       const startDate = searchData['date_' + propName + 'BatDau']
@@ -766,12 +740,12 @@ class ForAccountListPage extends Component {
    renderHeader = () => {
       const { settings } = this.props
       const { entity } = settings
-      const { name, slug } = entity
+      const { name } = entity
 
       return (
          <section className="breadcrumbs">
             <span className="breadcrumb-home">
-               <Link to="/">Mini Football Field Management System (GTMS)</Link>
+               <Link to="/">Mini Football Field Management System (MFFMS)</Link>
             </span>
 
             <span className="breadcrumb-separator">
@@ -786,7 +760,7 @@ class ForAccountListPage extends Component {
    }
 
    renderSectionHeaderRight = () => {
-      const { refresh, importData, exportData, toggleExportReportDialog } = this
+      const { refresh, toggleExportReportDialog } = this
       const { data } = this.state
       const { settings } = this.props
       const { entity, exportable = true } = settings
@@ -1000,8 +974,6 @@ class ForAccountListPage extends Component {
 
    renderTableData = () => {
       const {
-         getCurrentStatusColors,
-         getCurrentStatusText,
          deleteById,
          resetPasswordById,
          getCellValue

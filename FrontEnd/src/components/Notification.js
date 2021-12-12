@@ -7,7 +7,7 @@ const showNotification = actions.showNotification
 class Notification extends Component {
    ///// METHODS FOR REACT LIFECYCLES /////
 
-   componentWillReceiveProps = nextProps => {
+   UNSAFE_componentWillReceiveProps = nextProps => {
       const { createNotification } = this
       const { notification } = nextProps
 

@@ -43,7 +43,7 @@ class ForStatsPage extends Component {
 
    ///// METHODS FOR REACT LIFECYCLES /////
 
-   componentWillMount() {
+   UNSAFE_componentWillMount() {
       const { fetchData, fetchSettingsData } = this
 
       fetchData()
@@ -60,7 +60,7 @@ class ForStatsPage extends Component {
       scrollTop()
    }
 
-   componentWillUnmount() {
+   UNSAFE_componentWillUnmount() {
       if (this.fetchingDataInterval) {
          clearInterval(this.fetchingDataInterval)
       }
@@ -558,6 +558,7 @@ class ForStatsPage extends Component {
 
    renderCard = (cardMeta, cardData, index) => {
       const { label, icon, unit } = cardMeta
+      const { data } = this.state
 
       return (
          <div className="stats-card" key={index}>
@@ -567,12 +568,16 @@ class ForStatsPage extends Component {
 
             <div className="stats-card__body">
                <div className="stats-card__value">
-                  <CountUp
+                  {cardData !== undefined && (
+                     <CountUp
                      start={0}
                      end={cardData || 0}
-                     duration={2.75}
+                     duration={2.5}
                      separator=","
-                  />
+                     />
+                  ) || (
+                     <div className="stats-card__value">{data.duocDatNhieuNhat.tenSanBong}</div>
+                  )}
                </div>
 
                {unit !== undefined && (

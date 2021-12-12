@@ -39,7 +39,7 @@ class App extends Component {
       }
    }
 
-   componentWillReceiveProps(nextProps) {
+   UNSAFE_componentWillReceiveProps(nextProps) {
       const { autoLogin } = this
       const { autoLoginEnabled } = this.state
       const { user } = nextProps

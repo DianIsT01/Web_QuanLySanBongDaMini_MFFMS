@@ -6,7 +6,7 @@ const APP_DESCRIPTION =
    'Mini Football Field Management System - Hệ thống quản lý sân bóng đá mini'
 
 const APP_ABOUT =
-   'Copyright by Nguyễn Văn Giàu'
+   'Copyright by Gorillas'
 
 const PAGE_SIZES = [10, 25, 50, 100, 250, 500, 1000, 2500, 5000]
 
@@ -42,8 +42,8 @@ const ASSET_STATUSES_FOR_SEARCH = [
       label: 'Tất cả'
    },
    {
-      value: 'Hoạt động tốt',
-      label: 'Hoạt động tốt'
+      value: 'Đang sử dụng',
+      label: 'Đang sử dụng'
    },
    {
       value: 'Đang sửa chữa',
@@ -56,6 +56,10 @@ const ASSET_STATUSES_FOR_SEARCH = [
    {
       value: 'Đã qua sử dụng',
       label: 'Đã qua sử dụng'
+   },
+   {
+      value: 'Đã hư hỏng',
+      label: 'Đã hư hỏng'
    }
 ]
 

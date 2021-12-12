@@ -29,21 +29,6 @@ const menu = [
             icon: 'far fa-futbol'
          },
          {
-            title: 'Quản lý nhà cung cấp',
-            path: '/quan-ly/nha-cung-cap',
-            icon: 'fas fa-hands-helping'
-         },
-         {
-            title: 'Quản lý đơn nhập hàng',
-            path: '/quan-ly/don-nhap-hang',
-            icon: 'fas fa-file-invoice'
-         },
-         {
-            title: 'Quản lý tài sản thiết bị',
-            path: '/quan-ly/tai-san-thiet-bi',
-            icon: 'fas fa-cog'
-         },
-         {
             title: 'Quản lý phiếu đặt sân',
             path: '/quan-ly/phieu-dat-san',
             icon: 'fas fa-calendar-alt'
@@ -57,6 +42,21 @@ const menu = [
             title: 'Quản lý hóa đơn dịch vụ',
             path: '/quan-ly/hoa-don-dich-vu',
             icon: 'fas fa-file-invoice'
+         },
+         {
+            title: 'Quản lý nhà cung cấp',
+            path: '/quan-ly/nha-cung-cap',
+            icon: 'fas fa-hands-helping'
+         },
+         {
+            title: 'Quản lý đơn nhập hàng',
+            path: '/quan-ly/don-nhap-hang',
+            icon: 'fas fa-file-invoice'
+         },
+         {
+            title: 'Quản lý tài sản thiết bị',
+            path: '/quan-ly/tai-san-thiet-bi',
+            icon: 'fas fa-cog'
          }
       ]
    },
@@ -79,21 +79,6 @@ const menu = [
             icon: 'far fa-futbol'
          },
          {
-            title: 'Thống kê nhà cung cấp',
-            path: '/thong-ke/nha-cung-cap',
-            icon: 'fas fa-hands-helping'
-         },
-         {
-            title: 'Thống kê đơn nhập hàng',
-            path: '/thong-ke/don-nhap-hang',
-            icon: 'fas fa-file-invoice'
-         },
-         {
-            title: 'Thống kê tài sản thiết bị',
-            path: '/thong-ke/tai-san-thiet-bi',
-            icon: 'fas fa-cog'
-         },
-         {
             title: 'Thống kê phiếu đặt sân',
             path: '/thong-ke/phieu-dat-san',
             icon: 'fas fa-calendar-alt'
@@ -107,6 +92,21 @@ const menu = [
             title: 'Thống kê hóa đơn dịch vụ',
             path: '/thong-ke/hoa-don-dich-vu',
             icon: 'fas fa-file-invoice'
+         },
+         {
+            title: 'Thống kê nhà cung cấp',
+            path: '/thong-ke/nha-cung-cap',
+            icon: 'fas fa-hands-helping'
+         },
+         {
+            title: 'Thống kê đơn nhập hàng',
+            path: '/thong-ke/don-nhap-hang',
+            icon: 'fas fa-file-invoice'
+         },
+         {
+            title: 'Thống kê tài sản thiết bị',
+            path: '/thong-ke/tai-san-thiet-bi',
+            icon: 'fas fa-cog'
          }
       ]
    },
