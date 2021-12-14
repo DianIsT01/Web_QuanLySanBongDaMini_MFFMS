@@ -1,5 +1,4 @@
 import { USER_LOG_IN, USER_LOG_OUT } from '../actions/types'
-import { isEmptyObj } from '../../utils'
 
 let initialState = {}
 

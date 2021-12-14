@@ -7,11 +7,8 @@ import {
    scrollTop,
    numberWithCommas,
    apiGet,
-   print,
-   getColumnsOrdinates,
-   deepGet
+   deepGet,
 } from '../utils'
-import axios from 'axios'
 import { debounce } from 'debounce'
 import LoadingIndicator from './LoadingIndicator'
 import DeleteDialog from './DeleteDialog'
@@ -19,16 +16,10 @@ import Select from 'react-select'
 import { DateRangePicker } from 'react-date-range'
 import Dialog from './Dialog'
 import moment from 'moment'
-import exportFromJSON from 'export-from-json'
 import ForListPrintPage from './ForListPrintPage'
-import ExportReportDialog from './ExportReportDialog'
 import { connect } from 'react-redux'
 import { showNotification } from '../redux/actions'
-import Excel from 'exceljs'
-import { saveAs } from 'file-saver'
-import { excelFormat } from '../utils'
 import apiRoutes from '../routes/apis'
-import ResetPasswordDialog from './ResetPasswordDialog'
 
 const Slider = require('rc-slider')
 const createSliderWithTooltip = Slider.createSliderWithTooltip
@@ -44,7 +35,7 @@ const customStyles = {
    })
 }
 
-class ForAccountListPage extends Component {
+class ForListPage extends Component {
    constructor(props) {
       super(props)
 
@@ -69,11 +60,8 @@ class ForAccountListPage extends Component {
          loadingTableData: false,
          showDeleteDialog: false,
          recordToDelete: '',
-         recordToReset: '',
          showDateRangePicker: false,
          activeDateRangePicker: '',
-         showExportReportDialog: false,
-         showResetPasswordDialog: false,
          settingsData: {
             tenSanBong: '',
             diaChi: '',
@@ -103,7 +91,7 @@ class ForAccountListPage extends Component {
       fetchSettingsData()
    }
 
-   componentWillUnmount() {
+   UNSAFE_componentWillUnmount() {
       if (this.fetchingDataInterval) {
          clearInterval(this.fetchingDataInterval)
       }
@@ -112,7 +100,7 @@ class ForAccountListPage extends Component {
    ///// METHODS FOR INTERACTING WITH API /////
 
    fetchSettingsData = async () => {
-      const caiDat = { apiRoutes }
+      const { caiDat } = apiRoutes
       const url = caiDat.getAll
 
       try {
@@ -179,7 +167,7 @@ class ForAccountListPage extends Component {
       const params = formRequestParams()
 
       try {
-         const response = await apiGet(url, { params })
+         const response = await apiGet(url, params)
 
          if (response && response.data.status === 'SUCCESS') {
             const {
@@ -378,38 +366,10 @@ class ForAccountListPage extends Component {
       })
    }
 
-   importData = () => {}
-
-   exportData = async () => {
-      const { data } = this.state
-      const { settings } = this.props
-      const { entity } = settings
-      const { slug } = entity
-      const fileName = `${slug}-${moment().format('DDMMYYYY')}`
-      const exportType = 'json'
-
-      await exportFromJSON({ data, fileName, exportType })
-   }
-
-   exportReport = () => {}
-
-   toggleShowResetPasswordDialog = () => {
-      const { showResetPasswordDialog } = this.state
-
-      this.setState({ showResetPasswordDialog: !showResetPasswordDialog })
-   }
-
    toggleShowDeleteDialog = () => {
       const { showDeleteDialog } = this.state
 
       this.setState({ showDeleteDialog: !showDeleteDialog })
-   }
-
-   resetPasswordById = recordId => {
-      const { toggleShowResetPasswordDialog } = this
-      const recordToReset = recordId
-
-      this.setState({ recordToReset }, toggleShowResetPasswordDialog)
    }
 
    deleteById = recordId => {
@@ -424,203 +384,6 @@ class ForAccountListPage extends Component {
 
       toggleShowDeleteDialog()
       refresh()
-   }
-
-   resetPasswordByIdOnSuccess = () => {
-      const { toggleShowResetPasswordDialog, refresh } = this
-
-      toggleShowResetPasswordDialog()
-      refresh()
-   }
-
-   toggleExportReportDialog = () => {
-      const { showExportReportDialog } = this.state
-
-      this.setState({ showExportReportDialog: !showExportReportDialog })
-   }
-
-   exportToXlsx = () => {
-      const { showSuccessNotification, getCellValue } = this
-      const { data, settingsData } = this.state
-      const {
-         tenSanBong,
-         diaChi,
-         soDienThoai,
-         diaChiTrenPhieu,
-         fax
-      } = settingsData
-      const { settings } = this.props
-      const { entity, columns } = settings
-      const { name, slug } = entity
-      const fileName = `danh-sach-${slug}-${moment().format('DDMMYYYY')}`
-      let workbook = new Excel.Workbook()
-      let worksheet = workbook.addWorksheet(moment().format('DD-MM-YYYY'), {
-         pageSetup: { fitToPage: true, orientation: 'portrait' }
-      })
-      let currentRowCount = 7
-
-      workbook.Props = {
-         Title: fileName,
-         Subject: `Danh sách ${name} trong hệ thống`,
-         Author: 'MFFMS',
-         CreatedDate: moment()
-      }
-
-      worksheet.mergeCells('A1:G1')
-      worksheet.getCell('A1').value = tenSanBong
-      worksheet.getCell('A1').font = excelFormat.boldFont
-
-      worksheet.mergeCells('A2:G2')
-      worksheet.getCell('A2').value = diaChi
-      worksheet.getCell('A2').font = excelFormat.boldFont
-
-      worksheet.mergeCells('A3:G3')
-      worksheet.getCell(
-         'A3'
-      ).value = `Số điện thoại: ${soDienThoai} - Fax: ${fax}`
-      worksheet.getCell('A3').font = excelFormat.boldFont
-
-      worksheet.mergeCells('A5:P5')
-      worksheet.getCell(
-         'P5'
-      ).value = `DANH SÁCH ${name.toUpperCase()} TRONG HỆ THỐNG`
-      worksheet.getCell('P5').font = { ...excelFormat.boldFont, size: 18 }
-      worksheet.getCell('P5').alignment = excelFormat.center
-
-      worksheet.mergeCells('A7:A7')
-      worksheet.getCell('A7').value = 'STT'
-      worksheet.getCell('A7').font = excelFormat.boldFont
-      worksheet.getCell('A7').alignment = excelFormat.center
-      worksheet.getCell('A7').border = excelFormat.border
-
-      getColumnsOrdinates('B', 'P', columns.length, currentRowCount).forEach(
-         (columnOrdinate, index) => {
-            const { text } = columns[index]
-            const cellOrdinate = columnOrdinate.split(':')[0]
-
-            worksheet.mergeCells(columnOrdinate)
-            worksheet.getCell(cellOrdinate).value = text
-            worksheet.getCell(cellOrdinate).alignment = excelFormat.center
-            worksheet.getCell(cellOrdinate).font = excelFormat.boldFont
-            worksheet.getCell(cellOrdinate).border = excelFormat.border
-         }
-      )
-
-      currentRowCount += 1
-
-      data.forEach((record, recordIndex) => {
-         const columnOrdinates = getColumnsOrdinates(
-            'B',
-            'P',
-            columns.length,
-            currentRowCount
-         )
-
-         ;['', ...columns].forEach((column, index) => {
-            if (index === 0) {
-               worksheet.mergeCells(`A${currentRowCount}:A${currentRowCount}`)
-               worksheet.getCell(`A${currentRowCount}`).value = recordIndex + 1
-               worksheet.getCell(`A${currentRowCount}`).font =
-                  excelFormat.boldFont
-               worksheet.getCell(`A${currentRowCount}`).alignment =
-                  excelFormat.center
-               worksheet.getCell(`A${currentRowCount}`).border =
-                  excelFormat.border
-            } else {
-               const columnOrdinate = columnOrdinates[index - 1]
-               const cellOrdinate = columnOrdinate.split(':')[0]
-               worksheet.mergeCells(columnOrdinate)
-               worksheet.getCell(cellOrdinate).value = getCellValue(
-                  column,
-                  record
-               )
-               worksheet.getCell(cellOrdinate).alignment = excelFormat.center
-               worksheet.getCell(cellOrdinate).font = excelFormat.normalFont
-               worksheet.getCell(cellOrdinate).border = excelFormat.border
-            }
-         })
-
-         currentRowCount += 1
-      })
-
-      worksheet.mergeCells(
-         'A' + (currentRowCount + 2) + ':G' + (currentRowCount + 2)
-      )
-      worksheet.getCell(
-         'A' + (currentRowCount + 2)
-      ).value = `Danh sách có tất cả ${data.length} kết quả`
-      worksheet.getCell('A' + (currentRowCount + 2)).font =
-         excelFormat.italicFont
-      worksheet.getCell('A' + (currentRowCount + 2)).alignment =
-         excelFormat.left
-
-      worksheet.mergeCells(
-         'J' + (currentRowCount + 2) + ':P' + (currentRowCount + 2)
-      )
-      worksheet.getCell(
-         'J' + (currentRowCount + 2)
-      ).value = `${diaChiTrenPhieu}, ngày ${moment().format(
-         'DD'
-      )} tháng ${moment().format('MM')} năm ${moment().format('YYYY')}`
-      worksheet.getCell('J' + (currentRowCount + 2)).font =
-         excelFormat.italicFont
-      worksheet.getCell('J' + (currentRowCount + 2)).alignment =
-         excelFormat.right
-
-      worksheet.mergeCells(
-         'B' + (currentRowCount + 4) + ':D' + (currentRowCount + 4)
-      )
-      worksheet.getCell('B' + (currentRowCount + 4)).value = `NGƯỜI DUYỆT`
-      worksheet.getCell('B' + (currentRowCount + 4)).font = excelFormat.boldFont
-      worksheet.getCell('B' + (currentRowCount + 4)).alignment =
-         excelFormat.center
-
-      worksheet.mergeCells(
-         'M' + (currentRowCount + 4) + ':O' + (currentRowCount + 4)
-      )
-      worksheet.getCell('M' + (currentRowCount + 4)).value = `NGƯỜI LẬP`
-      worksheet.getCell('M' + (currentRowCount + 4)).font = excelFormat.boldFont
-      worksheet.getCell('M' + (currentRowCount + 4)).alignment =
-         excelFormat.center
-
-      worksheet.mergeCells(
-         'A' + (currentRowCount + 5) + ':E' + (currentRowCount + 5)
-      )
-      worksheet.getCell(
-         'A' + (currentRowCount + 5)
-      ).value = `(Ký và ghi rõ họ tên)`
-      worksheet.getCell('A' + (currentRowCount + 5)).font =
-         excelFormat.italicFont
-      worksheet.getCell('A' + (currentRowCount + 5)).alignment =
-         excelFormat.center
-
-      worksheet.mergeCells(
-         'L' + (currentRowCount + 5) + ':P' + (currentRowCount + 5)
-      )
-      worksheet.getCell(
-         'L' + (currentRowCount + 5)
-      ).value = `(Ký và ghi rõ họ tên)`
-      worksheet.getCell('L' + (currentRowCount + 5)).font =
-         excelFormat.italicFont
-      worksheet.getCell('L' + (currentRowCount + 5)).alignment =
-         excelFormat.center
-
-      workbook.xlsx.writeBuffer().then(function(data) {
-         var blob = new Blob([data], {
-            type:
-               'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-         })
-         saveAs(blob, fileName)
-      })
-
-      showSuccessNotification()
-   }
-
-   exportToPdf = () => {
-      const { showSuccessNotification } = this
-
-      print()
-      showSuccessNotification()
    }
 
    ///// METHODS FOR CHECKING VALUES /////
@@ -672,7 +435,6 @@ class ForAccountListPage extends Component {
       return searchData
    }
 
-
    getPageNumbers = () => {
       const { totalPages } = this.state
       let pageNumbers = []
@@ -682,6 +444,32 @@ class ForAccountListPage extends Component {
       }
 
       return pageNumbers
+   }
+
+   getCurrentStatusColors = statusCode => {
+      switch (parseInt(statusCode)) {
+         case -1:
+            return {
+               backgroundColor: 'lightgray',
+               color: 'gray'
+            }
+
+         case 1:
+            return {
+               backgroundColor: '#0BBE51',
+               color: '#fff'
+            }
+      }
+   }
+
+   getCurrentStatusText = statusCode => {
+      switch (parseInt(statusCode)) {
+         case -1:
+            return 'Đã bị xóa'
+
+         case 1:
+            return 'Đang hiển thị'
+      }
    }
 
    getDateRangePickerValue = (propName, defaultValue = '') => {
@@ -740,12 +528,12 @@ class ForAccountListPage extends Component {
    renderHeader = () => {
       const { settings } = this.props
       const { entity } = settings
-      const { name } = entity
+      const { name, slug } = entity
 
       return (
          <section className="breadcrumbs">
             <span className="breadcrumb-home">
-               <Link to="/">Mini Football Field Management System (MFFMS)</Link>
+               <Link to="/">Mini Football Field Management System (GTMS)</Link>
             </span>
 
             <span className="breadcrumb-separator">
@@ -760,10 +548,10 @@ class ForAccountListPage extends Component {
    }
 
    renderSectionHeaderRight = () => {
-      const { refresh, toggleExportReportDialog } = this
+      const { refresh } = this
       const { data } = this.state
       const { settings } = this.props
-      const { entity, exportable = true } = settings
+      const { entity } = settings
       const { slug } = entity
 
       return (
@@ -777,12 +565,6 @@ class ForAccountListPage extends Component {
                   <i className="fas fa-plus-circle"></i>&nbsp;&nbsp;Thêm mới
                </Link>
             </span>
-
-            {exportable && data.length !== 0 && (
-               <span className="button" onClick={toggleExportReportDialog}>
-                  <i className="fas fa-file-export"></i>&nbsp;&nbsp;Xuất báo cáo
-               </span>
-            )}
          </Fragment>
       )
    }
@@ -907,7 +689,7 @@ class ForAccountListPage extends Component {
 
          case 'select': {
             const { search } = column
-            const { values, propForItemText, propForItemValue } = search
+            const { values } = search
 
             return (
                <Select
@@ -957,7 +739,7 @@ class ForAccountListPage extends Component {
 
    renderTableBody = () => {
       const { renderTableData, renderEmptyTable } = this
-      const { data, loadingTableData } = this.state
+      const { data } = this.state
       const { settings } = this.props
       const { columns } = settings
 
@@ -975,7 +757,6 @@ class ForAccountListPage extends Component {
    renderTableData = () => {
       const {
          deleteById,
-         resetPasswordById,
          getCellValue
       } = this
       const { data } = this.state
@@ -1006,27 +787,13 @@ class ForAccountListPage extends Component {
                      </Link>
                   </li>
 
-                  <li className="table-dropdown-menu-item">
-                     <Link
-                        to={`/quan-ly/${slug}/thay-doi-mat-khau/${record[idColumn]}`}
-                     >
-                        Thay đổi mật khẩu
-                     </Link>
-                  </li>
-
-                  <li
-                     className="table-dropdown-menu-item"
-                     onClick={() => resetPasswordById(record[idColumn])}
-                  >
-                     <Link to="#">Khôi phục mật khẩu mặc định</Link>
-                  </li>
-
                   <li
                      className="table-dropdown-menu-item"
                      onClick={() => deleteById(record[idColumn])}
                   >
                      <Link to="#">Xóa khỏi danh sách</Link>
                   </li>
+
                </ul>
             </td>
 
@@ -1062,7 +829,7 @@ class ForAccountListPage extends Component {
          showPrevPage,
          showNextPage
       } = this
-      const { totalPages, totalItems, pageSize } = this.state
+      const { totalPages, pageSize } = this.state
 
       return (
          <div className="table-pagination">
@@ -1120,23 +887,14 @@ class ForAccountListPage extends Component {
    renderDialogs = () => {
       const {
          toggleShowDeleteDialog,
-         toggleShowResetPasswordDialog,
          deleteByIdOnSuccess,
-         resetPasswordByIdOnSuccess,
-         toggleExportReportDialog,
-         exportToPdf,
-         exportToXlsx
       } = this
       const {
          showDeleteDialog,
-         showResetPasswordDialog,
-         recordToDelete,
-         recordToReset,
-         showExportReportDialog,
-         data
+         recordToDelete
       } = this.state
       const { settings } = this.props
-      const { entity, api, columns } = settings
+      const { entity, api } = settings
       const deleteDialogSettings = {
          isOpen: showDeleteDialog,
          onClose: toggleShowDeleteDialog,
@@ -1145,27 +903,10 @@ class ForAccountListPage extends Component {
          id: recordToDelete,
          api
       }
-      const resetPasswordDialogSettings = {
-         isOpen: showResetPasswordDialog,
-         onClose: toggleShowResetPasswordDialog,
-         onSuccess: resetPasswordByIdOnSuccess,
-         entity,
-         id: recordToReset,
-         api
-      }
-      const exportDialogSettings = {
-         isOpen: showExportReportDialog,
-         onClose: toggleExportReportDialog,
-         onExportToPdf: exportToPdf,
-         onExportToXlsx: exportToXlsx,
-         entity
-      }
-
+   
       return (
          <Fragment>
             <DeleteDialog settings={deleteDialogSettings} />
-            <ResetPasswordDialog settings={resetPasswordDialogSettings} />
-            <ExportReportDialog settings={exportDialogSettings} />
          </Fragment>
       )
    }
@@ -1228,4 +969,4 @@ class ForAccountListPage extends Component {
    }
 }
 
-export default connect(null, { showNotification })(ForAccountListPage)
+export default connect(null, { showNotification })(ForListPage)

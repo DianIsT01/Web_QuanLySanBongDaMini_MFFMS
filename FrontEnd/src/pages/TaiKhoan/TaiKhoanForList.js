@@ -11,7 +11,6 @@ class TaiKhoanForList extends Component {
       const settings = {
          entity: taiKhoan,
          api: apiRoutes.taiKhoan,
-         exportable: false,
          columns: [
             {
                text: 'Mã tài khoản',
@@ -27,7 +26,7 @@ class TaiKhoanForList extends Component {
             {
                text: 'Tên đăng nhập',
                propForValue: 'tenDangNhap',
-               propForSorting: 'HoVaTen',
+               propForSorting: 'TenDangNhap',
                type: 'string',
                search: {
                   type: 'input',

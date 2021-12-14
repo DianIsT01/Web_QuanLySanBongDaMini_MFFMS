@@ -207,9 +207,11 @@ class ForStatsPage extends Component {
             startDate = moment()
                .startOf('week')
                .format('YYYY-MM-DD')
+               console.log(`startDate`, startDate)
             endDate = moment()
                .endOf('week')
                .format('YYYY-MM-DD')
+               console.log(`startDate`, endDate)
             break
          }
 
