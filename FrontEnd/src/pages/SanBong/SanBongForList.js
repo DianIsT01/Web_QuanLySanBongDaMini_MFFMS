@@ -61,7 +61,7 @@ class SanBongForList extends Component {
             {
                text: 'Diện tích (m2)',
                propForValue: 'dienTich',
-               propForSorting: 'dienTich',
+               propForSorting: 'DienTich',
                type: 'number',
                search: {
                   type: 'slider',

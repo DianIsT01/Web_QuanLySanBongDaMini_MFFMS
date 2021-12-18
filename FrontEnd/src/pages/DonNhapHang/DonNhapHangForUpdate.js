@@ -134,57 +134,6 @@ class DonNhapHangForUpdate extends Component {
       return allAssets
    }
 
-   ////// METHODS FOR REACT LIFECYCLES /////
-
-   componentDidMount() {
-      const { fetchData } = this
-
-      fetchData()
-   }
-
-   ///// METHODS FOR INTERACTING WITH API /////
-
-   fetchData = () => {
-      const { fetchAssets } = this
-
-      fetchAssets()
-   }
-
-   fetchAssets = async () => {
-      const url = apiRoutes.taiSanThietBi.getAll
-      const queries = { pageSize: 1000 }
-
-      try {
-         const response = await apiGet(url, queries)
-
-         if (response && response.data.status === 'SUCCESS') {
-            const { data } = response.data.result
-
-            this.setState({ assets: data })
-         } else {
-            throw new Error(response.errors)
-         }
-      } catch (error) {
-         console.error(error)
-      }
-   }
-
-   ///// METHODS FOR COMPUTING VALUES /////
-
-   getAllAssets = () => {
-      const { assets } = this.state
-      let allAssets = []
-
-      assets.forEach(asset => {
-         allAssets.push({
-            value: asset['maTSTB'],
-            label: asset['tenTSTB']
-         })
-      })
-
-      return allAssets
-   }
-
    ///// METHODS FOR RENDERING UI /////
 
    renderComponent = () => {

@@ -981,8 +981,6 @@ class ForListPage extends Component {
 
    renderTableData = () => {
       const {
-         getCurrentStatusColors,
-         getCurrentStatusText,
          deleteById,
          getCellValue
       } = this

@@ -78,8 +78,6 @@ class ForCreatePage extends Component {
          .catch(error => {
             showErrorNotification()
             this.setState({ loading: false })
-            // const { errors } = error.response.data.result
-            // this.setState({ showAlert: true })
          })
    }
 
